@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ContextMenu;
 using Foundation;
 using UIKit;
+using ContextMenu.iOS;
 
 namespace ContextMenuSample.iOS
 {
@@ -23,6 +24,8 @@ namespace ContextMenuSample.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
+
+			ContextMenuScrollViewRenderer.Initialize();
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
