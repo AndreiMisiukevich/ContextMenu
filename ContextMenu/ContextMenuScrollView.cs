@@ -71,6 +71,7 @@ namespace ContextMenu
 			{
 				if (value != _contextView)
 				{
+					_viewStack.BatchBegin();
 					if (_contextView != null)
 					{
 						_viewStack.Children.Remove(_contextView);
@@ -79,6 +80,12 @@ namespace ContextMenu
 					{
 						_viewStack.Children.Add(value);
 					}
+
+					if (ContentView.Width < ContentView.WidthRequest)
+					{
+						ContentView.Layout(new Rectangle(ContentView.X, ContentView.Y, ContentView.WidthRequest, ContentView.Height));
+					}
+					_viewStack.BatchCommit();
 				}
 				_contextView = value;
 			}

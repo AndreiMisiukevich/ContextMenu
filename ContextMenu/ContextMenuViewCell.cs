@@ -12,14 +12,14 @@ namespace ContextMenu
 			View = new ContextMenuScrollView();
 		}
 
-		protected void SetContentView(View context)
-		{
-			(View as ContextMenuScrollView).ContextView = context;
-		}
-
-		protected void SetContextView(View content)
+		protected void SetContentView(View content)
 		{
 			(View as ContextMenuScrollView).ContentView = content;
+		}
+
+		protected void SetContextView(View context)
+		{
+			(View as ContextMenuScrollView).ContextView = context;
 		}
 
 		protected void SetView(View content, View context)
