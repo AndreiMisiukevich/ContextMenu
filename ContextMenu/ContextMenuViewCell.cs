@@ -3,20 +3,44 @@ using Xamarin.Forms;
 
 namespace ContextMenu
 {
-	public abstract class ContextMenuViewCell: ViewCell
+	public abstract class ContextMenuViewCell : ViewCell
 	{
+		#region props
+		public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContextMenuViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
+		{
+			(bindable as ContextMenuViewCell).SetContentView(newValue as View);
+		});
+
+		public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(ContextMenuViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
+		{
+			(bindable as ContextMenuViewCell).IsContextChanged = true;
+		});
+
+		public DataTemplate ContextTemplate
+		{
+			get => GetValue(ContextTemplateProperty) as DataTemplate;
+			set => SetValue(ContextTemplateProperty, value);
+		}
+
+		public View Content
+		{
+			get => GetValue(ContentProperty) as View;
+			set => SetValue(ContentProperty, value);
+		}
+		#endregion
+
 		protected ContextMenuScrollView Scroll { get; } = new ContextMenuScrollView();
-		private bool _isContextChanged;
+		protected bool IsContextChanged { get; private set; }
 
 		public ContextMenuViewCell()
 		{
 			View = Scroll;
 		}
 
-		protected void ForceClose(bool animated = true) 
+		protected void ForceClose(bool animated = true)
 		=> Scroll.ForceCloseContextMenu(Scroll, animated);
 
-		protected void SetIsOneCanBeOpened(bool flag) 
+		protected void SetIsOneCanBeOpened(bool flag)
 		=> Scroll.IsOneMenuCanBeOpened = flag;
 
 		protected void SetContentView(View content)
@@ -33,23 +57,25 @@ namespace ContextMenu
 
 		protected virtual void OnTouchStarted()
 		{
-			if (_isContextChanged)
+			if (IsContextChanged)
 			{
-				_isContextChanged = false;
-				var contextView = BuildContextView(BindingContext);
-				if (contextView == null)
+				IsContextChanged = false;
+
+				var template = ContextTemplate is DataTemplateSelector selector 
+					? selector.SelectTemplate(BindingContext, this) 
+	              	: ContextTemplate;
+				
+				if(template == null)
 				{
 					return;
 				}
-				SetContextView(contextView);
+				SetContextView(template.CreateContent() as View);
 			}
 		}
 
 		protected virtual void OnContextMenuOpened()
 		{
 		}
-
-		protected abstract View BuildContextView(object bindingContext);
 
 		protected override void OnAppearing()
 		{
@@ -73,8 +99,8 @@ namespace ContextMenu
 
 		protected override void OnBindingContextChanged()
 		{
-			_isContextChanged = true;
-			ForceClose();
+			IsContextChanged = true;
+			ForceClose(false);
 			base.OnBindingContextChanged();
 		}
 	}

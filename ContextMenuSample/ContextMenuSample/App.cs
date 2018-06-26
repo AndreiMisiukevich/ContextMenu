@@ -33,8 +33,6 @@ namespace ContextMenuSample
 
 	public class SampleCell : ContextMenuViewCell
 	{
-		private readonly View _content;
-
 		public SampleCell()
 		{
 			var r = new Random();
@@ -45,17 +43,57 @@ namespace ContextMenuSample
 				FontAttributes = FontAttributes.Bold,
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.Center
-		 	};
+			};
 			l.SetBinding(Label.TextProperty, ".");
-			_content = new ContentView
+
+			Content = new ContentView
 			{
 				Margin = new Thickness(0, 5, 0, 0),
 				BackgroundColor = Color.FromRgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255)),
 				Content = l
 			};
 
-
-			SetContentView(_content);
+			ContextTemplate = new DataTemplate(() => new StackLayout
+			{
+				WidthRequest = 252,
+				Margin = new Thickness(0, 5, 0, 0),
+				Orientation = StackOrientation.Horizontal,
+				Children = {
+					new Button
+					{
+						WidthRequest = 80,
+						BackgroundColor = Color.Red,
+						TextColor = Color.Black,
+						Text = "Red",
+						CommandParameter = "Red",
+						Command = new Command((p) => {
+							Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
+						})
+					},
+					new Button
+					{
+						WidthRequest = 80,
+						BackgroundColor = Color.Yellow,
+						TextColor = Color.Black,
+						Text = "Yellow",
+						CommandParameter = "Yellow",
+						Command = new Command((p) => {
+							Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
+						})
+					},
+					new Button
+					{
+						WidthRequest = 80,
+						BackgroundColor = Color.Green,
+						TextColor = Color.Black,
+						Text = "Green",
+						CommandParameter = "Green",
+						Command = new Command((p) => {
+							Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
+						})
+					}
+				}
+			});
 		}
 
 		protected override void OnAppearing() // setting content width according to Parent width
@@ -64,51 +102,8 @@ namespace ContextMenuSample
 			var p = Parent as View;
 			if (p != null)
 			{
-				_content.WidthRequest = p.Width;
+				Content.WidthRequest = p.Width;
 			}
 		}
-
-		protected override View BuildContextView(object bindingContext)
-		=> new StackLayout
-		{
-			WidthRequest = 252,
-			Margin = new Thickness(0, 5, 0, 0),
-			Orientation = StackOrientation.Horizontal,
-			Children = {
-				new Button
-				{
-					WidthRequest = 80,
-					BackgroundColor = Color.Red,
-					TextColor = Color.Black,
-					Text = "Red",
-					CommandParameter = "Red",
-					Command = new Command((p) => {
-						Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
-					})
-				},
-				new Button
-				{
-					WidthRequest = 80,
-					BackgroundColor = Color.Yellow,
-					TextColor = Color.Black,
-					Text = "Yellow",
-					CommandParameter = "Yellow",
-					Command = new Command((p) => {
-						Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
-					})
-				},
-				new Button
-				{
-					WidthRequest = 80,
-					BackgroundColor = Color.Green,
-					TextColor = Color.Black,
-					Text = "Green",
-					CommandParameter = "Green",
-					Command = new Command((p) => {
-						Application.Current.MainPage.DisplayAlert(p.ToString(), null, "Ok");
-					})
-				}
-			}
-		};
 	}
 }
