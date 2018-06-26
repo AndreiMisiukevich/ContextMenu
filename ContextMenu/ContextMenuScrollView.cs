@@ -70,10 +70,13 @@ namespace ContextMenu
 			get => _contextView;
 			set
 			{
+				value = value ?? new ContentView { WidthRequest = 1 };
 				if (value != _contextView)
 				{
+					value.IsVisible = false;
 					ViewStack.Children.Remove(_contextView);
-					ViewStack.Children.Add(value ?? new ContentView { WidthRequest = 1 });
+					ViewStack.Children.Add(value);
+					value.IsVisible = true;
 				}
 				_contextView = value;
 			}
@@ -83,7 +86,7 @@ namespace ContextMenu
 
 		public bool IsOneMenuCanBeOpened { get; set; } = true;
 
-		public async void ForceCloseContextMenu(ContextMenuScrollView view)
+		public async void ForceCloseContextMenu(ContextMenuScrollView view, bool animated)
 		{
 			if (view == null)
 			{
@@ -94,7 +97,7 @@ namespace ContextMenu
 			{
 				if (view.ScrollX > 0)
 				{
-					var task = view.ScrollToAsync(0, 0, true);
+					var task = view.ScrollToAsync(0, 0, animated);
 					if (view == null)
 					{
 						var completionSource = new TaskCompletionSource<bool>();

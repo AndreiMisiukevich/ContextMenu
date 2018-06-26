@@ -71,6 +71,7 @@ namespace ContextMenuSample
 		protected override View BuildContextView(object bindingContext)
 		=> new StackLayout
 		{
+			WidthRequest = 252,
 			Margin = new Thickness(0, 5, 0, 0),
 			Orientation = StackOrientation.Horizontal,
 			Children = {

@@ -13,8 +13,8 @@ namespace ContextMenu
 			View = Scroll;
 		}
 
-		protected void ForceClose() 
-		=> Scroll.ForceCloseContextMenu(Scroll);
+		protected void ForceClose(bool animated = true) 
+		=> Scroll.ForceCloseContextMenu(Scroll, animated);
 
 		protected void SetIsOneCanBeOpened(bool flag) 
 		=> Scroll.IsOneMenuCanBeOpened = flag;
@@ -74,6 +74,7 @@ namespace ContextMenu
 		protected override void OnBindingContextChanged()
 		{
 			_isContextChanged = true;
+			ForceClose();
 			base.OnBindingContextChanged();
 		}
 	}
