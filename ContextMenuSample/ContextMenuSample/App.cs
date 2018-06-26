@@ -38,7 +38,6 @@ namespace ContextMenuSample
 		public SampleCell()
 		{
 			var r = new Random();
-
 			var l = new Label
 			{
 				TextColor = Color.FromRgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255)),
@@ -48,21 +47,22 @@ namespace ContextMenuSample
 				VerticalOptions = LayoutOptions.Center
 		 	};
 			l.SetBinding(Label.TextProperty, ".");
-
 			_content = new ContentView
 			{
 				Margin = new Thickness(0, 5, 0, 0),
 				BackgroundColor = Color.FromRgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255)),
 				Content = l
 			};
-			SetView(_content, new ContentView { WidthRequest = 1 });
+
+
+			SetContentView(_content);
 		}
 
-		protected override void OnAppearing()
+		protected override void OnAppearing() // setting content width according to Parent width
 		{
 			base.OnAppearing();
 			var p = Parent as View;
-			if(p != null)
+			if (p != null)
 			{
 				_content.WidthRequest = p.Width;
 			}

@@ -11,21 +11,19 @@ namespace ContextMenu
 	public class ContextMenuScrollView : ScrollView
 	{
 		public event Action TouchStarted;
-
-		private static ContextMenuScrollView _openedSideMenu;
+		public event Action ContextMenuOpened;
 
 		private View _contentView;
-		private View _contextView;
+		private View _contextView = new ContentView { WidthRequest = 1 };
 
-		protected readonly StackLayout _viewStack;
-		protected GalleyScrollDirection _currentDirection;
-		protected GalleyScrollState _currentState;
-		protected bool _hasBeenAccelerated;
-		protected double _prevScrollX;
+		public StackLayout ViewStack { get; }
+		public GalleyScrollDirection CurrentDirection { get; private set; }
+		public GalleyScrollState CurrentState { get; private set; }
+		public bool HasBeenAccelerated { get; private set; }
+		public double PrevScrollX { get; private set; }
 
-		protected bool IsOpenDirection => _currentDirection == GalleyScrollDirection.Open;
-		protected bool IsDirectionAndStateSame => (int)_currentDirection == (int)_currentState;
-		protected virtual bool IsScrollEnabled => true;
+		public bool IsOpenDirection => CurrentDirection == GalleyScrollDirection.Open;
+		public bool IsDirectionAndStateSame => (int)CurrentDirection == (int)CurrentState;
 
 		public ContextMenuScrollView()
 		{
@@ -33,12 +31,15 @@ namespace ContextMenu
 			VerticalOptions = LayoutOptions.Fill;
 			HorizontalOptions = LayoutOptions.Fill;
 
-			Content = _viewStack = new StackLayout
+			Content = ViewStack = new StackLayout
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.Fill,
 				Spacing = 0,
-				Orientation = StackOrientation.Horizontal
+				Orientation = StackOrientation.Horizontal,
+				Children = {
+					_contextView
+				}
 			};
 
 			Scrolled += OnScrolled;
@@ -53,11 +54,11 @@ namespace ContextMenu
 				{
 					if (_contentView != null)
 					{
-						_viewStack.Children.Remove(_contentView);
+						ViewStack.Children.Remove(_contentView);
 					}
 					if (value != null)
 					{
-						_viewStack.Children.Add(value);
+						ViewStack.Children.Insert(0, value);
 					}
 				}
 				_contentView = value;
@@ -71,72 +72,88 @@ namespace ContextMenu
 			{
 				if (value != _contextView)
 				{
-					_viewStack.BatchBegin();
-					if (_contextView != null)
-					{
-						_viewStack.Children.Remove(_contextView);
-					}
-					if (value != null)
-					{
-						_viewStack.Children.Add(value);
-					}
-
-					if (ContentView.Width < ContentView.WidthRequest)
-					{
-						ContentView.Layout(new Rectangle(ContentView.X, ContentView.Y, ContentView.WidthRequest, ContentView.Height));
-					}
-					_viewStack.BatchCommit();
+					ViewStack.Children.Remove(_contextView);
+					ViewStack.Children.Add(value ?? new ContentView { WidthRequest = 1 });
 				}
 				_contextView = value;
 			}
 		}
 
-		public bool IsClosed => _currentState == GalleyScrollState.Closed;
+		public bool IsClosed => CurrentState == GalleyScrollState.Closed;
 
 		public bool IsOneMenuCanBeOpened { get; set; } = true;
+
+		public async void ForceCloseContextMenu(ContextMenuScrollView view)
+		{
+			if (view == null)
+			{
+				return;
+			}
+
+			try
+			{
+				if (view.ScrollX > 0)
+				{
+					var task = view.ScrollToAsync(0, 0, true);
+					if (view == null)
+					{
+						var completionSource = new TaskCompletionSource<bool>();
+						Device.BeginInvokeOnMainThread(async () =>
+						{
+							await task;
+							completionSource.SetResult(true);
+						});
+						await completionSource.Task;
+						return;
+					}
+					await task;
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+			}
+		}
 
 		public virtual void OnTouchStarted()
 		{
 			TouchStarted?.Invoke();
-			_hasBeenAccelerated = false;
+			HasBeenAccelerated = false;
 		}
 
 		public virtual async void OnTouchEnded()
 		{
-			if (IsScrollEnabled)
+			if (Device.RuntimePlatform == Device.Android)
 			{
-				if (Device.RuntimePlatform == Device.Android)
-				{
-					await Task.Delay(10);
-				}
-
-				if (_hasBeenAccelerated || !IsScrollEnabled)
-				{
-					return;
-				}
-
-				var width = GetContextViewWidth();
-				var isOpen = IsOpenDirection
-							? ScrollX > GetMovingWidth(width)
-							: ScrollX > width - GetMovingWidth(width);
-				await ScrollToAsync(isOpen ? width : 0, 0, true);
+				await Task.Delay(10);
 			}
 
-			if (!_hasBeenAccelerated && IsScrollEnabled && CheckIsOpen() && IsOneMenuCanBeOpened)
+			if (HasBeenAccelerated)
 			{
-				ForceCloseContextMenu(this);
+				return;
+			}
+
+			var width = GetContextViewWidth();
+			var isOpen = IsOpenDirection
+						? ScrollX > GetMovingWidth(width)
+						: ScrollX > width - GetMovingWidth(width);
+			await ScrollToAsync(isOpen ? width : 0, 0, true);
+
+			if (!HasBeenAccelerated && CheckIsOpen() && IsOneMenuCanBeOpened)
+			{
+				ContextMenuOpened?.Invoke();
 			}
 		}
 
 		public virtual async Task OnFlingStarted(bool needScroll = true, bool animated = true, bool inMainThread = false)
 		{
-			if (needScroll && IsScrollEnabled && IsOneMenuCanBeOpened)
+			if (needScroll && IsOneMenuCanBeOpened)
 			{
-				ForceCloseContextMenu(this);
+				ContextMenuOpened?.Invoke();
 			}
 
-			_hasBeenAccelerated = true;
-			if (needScroll && IsScrollEnabled)
+			HasBeenAccelerated = true;
+			if (needScroll)
 			{
 
 				var task = ScrollToAsync(IsOpenDirection ? GetContextViewWidth() : 0, 0, animated);
@@ -157,7 +174,7 @@ namespace ContextMenu
 
 		public async Task MoveSideMenu(bool isOpen = false, bool animated = true)
 		{
-			_currentDirection = isOpen
+			CurrentDirection = isOpen
 				? GalleyScrollDirection.Open
 				: GalleyScrollDirection.Close;
 
@@ -171,81 +188,44 @@ namespace ContextMenu
 
 		protected virtual void OnScrolled(object sender, ScrolledEventArgs args)
 		{
-			_currentDirection = Math.Abs(_prevScrollX - ScrollX) < double.Epsilon
-					? _currentDirection
-					: _prevScrollX > ScrollX
+			CurrentDirection = Math.Abs(PrevScrollX - ScrollX) < double.Epsilon
+					? CurrentDirection
+					: PrevScrollX > ScrollX
 						? GalleyScrollDirection.Close
 						: GalleyScrollDirection.Open;
-			_prevScrollX = ScrollX;
+			PrevScrollX = ScrollX;
 
-			if (IsScrollEnabled)
-			{
-				CheckScrollState();
-			}
+			CheckScrollState();
 		}
 
 		protected virtual void CheckScrollState()
 		{
 			if (Math.Abs(ScrollX) <= double.Epsilon)
 			{
-				_currentState = GalleyScrollState.Closed;
+				CurrentState = GalleyScrollState.Closed;
 			}
 			else if (Math.Abs(ScrollX - GetContextViewWidth()) <= double.Epsilon)
 			{
-				_currentState = GalleyScrollState.Opened;
+				CurrentState = GalleyScrollState.Opened;
 			}
 			else
 			{
-				_currentState = GalleyScrollState.Moving;
+				CurrentState = GalleyScrollState.Moving;
 			}
 		}
 
 		protected virtual double GetContextViewWidth() 
-		=> ContentView.Width;
+		=> ContextView.Width;
 
-		protected virtual double GetMovingWidth(double contextVidth)
-		=> contextVidth * 0.3;
+		protected virtual double GetMovingWidth(double contextWidth)
+		=> contextWidth * 0.3;
 
-		private bool CheckIsOpen()
+		protected bool CheckIsOpen()
 		{
 			var width = GetContextViewWidth();
 			return IsOpenDirection
 							? ScrollX > GetMovingWidth(width)
 							: ScrollX > width - GetMovingWidth(width);
-		}
-
-		public static async void ForceCloseContextMenu(ContextMenuScrollView view)
-		{
-			if ((_openedSideMenu ?? view) == null || _openedSideMenu == view)
-			{
-				return;
-			}
-
-			try
-			{
-				var closingSideMenu = _openedSideMenu;
-				_openedSideMenu = view;
-				if (closingSideMenu?.ScrollX > 0)
-				{
-					var task = closingSideMenu.ScrollToAsync(0, 0, true);
-					if (view == null)
-					{
-						var completionSource = new TaskCompletionSource<bool>();
-						Device.BeginInvokeOnMainThread(async () =>
-						{
-							await task;
-							completionSource.SetResult(true);
-						});
-						await completionSource.Task;
-						return;
-					}
-					await task;
-				}
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex);
-			}
 		}
 	}
 }

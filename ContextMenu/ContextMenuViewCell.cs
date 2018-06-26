@@ -5,22 +5,25 @@ namespace ContextMenu
 {
 	public abstract class ContextMenuViewCell: ViewCell
 	{
+		protected ContextMenuScrollView Scroll { get; } = new ContextMenuScrollView();
 		private bool _isContextChanged;
 
 		public ContextMenuViewCell()
 		{
-			View = new ContextMenuScrollView();
+			View = Scroll;
 		}
+
+		protected void ForceClose() 
+		=> Scroll.ForceCloseContextMenu(Scroll);
+
+		protected void SetIsOneCanBeOpened(bool flag) 
+		=> Scroll.IsOneMenuCanBeOpened = flag;
 
 		protected void SetContentView(View content)
-		{
-			(View as ContextMenuScrollView).ContentView = content;
-		}
+		=> (View as ContextMenuScrollView).ContentView = content;
 
 		protected void SetContextView(View context)
-		{
-			(View as ContextMenuScrollView).ContextView = context;
-		}
+		=> (View as ContextMenuScrollView).ContextView = context;
 
 		protected void SetView(View content, View context)
 		{
@@ -42,6 +45,10 @@ namespace ContextMenu
 			}
 		}
 
+		protected virtual void OnContextMenuOpened()
+		{
+		}
+
 		protected abstract View BuildContextView(object bindingContext);
 
 		protected override void OnAppearing()
@@ -50,6 +57,7 @@ namespace ContextMenu
 			if (View is ContextMenuScrollView sideContextBar)
 			{
 				sideContextBar.TouchStarted += OnTouchStarted;
+				sideContextBar.ContextMenuOpened += OnContextMenuOpened;
 			}
 		}
 
@@ -59,6 +67,7 @@ namespace ContextMenu
 			if (View is ContextMenuScrollView sideContextBar)
 			{
 				sideContextBar.TouchStarted -= OnTouchStarted;
+				sideContextBar.ContextMenuOpened -= OnContextMenuOpened;
 			}
 		}
 
