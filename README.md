@@ -38,6 +38,19 @@ The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/bl
         </ListView.ItemTemplate>
     </ListView>
 ```
+**Make sure your main view width equals list's width**
+You can adjust it by binding
+
+```xml
+...
+<ListView x:Name="SampleList"
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <context:ContextViewCell>
+                    <context:ContextViewCell.Content>
+                        <ContentView WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
+                            ...
+```
 
 Check source code for more info, or 🇧🇾 ***just ask me =)*** 🇧🇾
 
