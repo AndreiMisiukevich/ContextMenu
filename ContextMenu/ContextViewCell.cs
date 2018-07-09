@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using System;
 
 namespace ContextMenu
 {
@@ -13,6 +14,10 @@ namespace ContextMenu
 		{
 			(bindable as ContextViewCell).IsContextChanged = true;
 		});
+
+		public event Action<ContextViewCell> ContextMenuOpened;
+
+		public event Action<ContextViewCell> TouchStarted;
 
 		private bool IsContextChanged { get; set; }
 
@@ -44,28 +49,6 @@ namespace ContextMenu
 		protected void SetContextView(View context)
 		=> (View as ContextMenuScrollView).ContextView = context;
 
-		protected virtual void OnTouchStarted()
-		{
-			if (IsContextChanged)
-			{
-				IsContextChanged = false;
-
-				var template = ContextTemplate is DataTemplateSelector selector
-					? selector.SelectTemplate(BindingContext, this)
-					  : ContextTemplate;
-
-				if (template == null)
-				{
-					return;
-				}
-				SetContextView(template.CreateContent() as View);
-			}
-		}
-
-		protected virtual void OnContextMenuOpened()
-		{
-		}
-
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
@@ -92,5 +75,26 @@ namespace ContextMenu
 			ForceClose(false);
 			base.OnBindingContextChanged();
 		}
+
+		private void OnTouchStarted()
+		{
+			TouchStarted?.Invoke(this);
+			if (IsContextChanged)
+			{
+				IsContextChanged = false;
+
+				var template = ContextTemplate is DataTemplateSelector selector
+					? selector.SelectTemplate(BindingContext, this)
+					  : ContextTemplate;
+
+				if (template == null)
+				{
+					return;
+				}
+				SetContextView(template.CreateContent() as View);
+			}
+		}
+
+		private void OnContextMenuOpened() => ContextMenuOpened?.Invoke(this);
 	}
 }
