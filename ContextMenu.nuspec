@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ContextViewCell</id>
+    <version>0.0.1</version>
+    <title>ContextViewCell</title>
+    <authors>Andrei Misiukevich</authors>
+    <owners>Andrei Misiukevich</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/AndreiMisiukevich/ContextMenu</projectUrl>
+    <iconUrl>https://cdn2.iconfinder.com/data/icons/it-technology/70/phonewebsite-512.png</iconUrl>
+    <description>Custom context menu for Xamarin Forms view cell</description>
+    <summary>This plugin provides opportunity to create custom context menu for every cell</summary>
+    <tags>contextviewcell, viewcell, menucell, context menu, context menu viewcell, forms, contextbar, viewcell right menu, contextbar</tags>
+    <dependencies>
+      <group>
+          <dependency id="Xamarin.Forms" version="2.4" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <!--Net Standard-->
+    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\netstandard1.0\ContextMenu.dll" />
+
+    <!--Core PCL-->
+    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\portable-win+net45+wp80+win81+wpa81\ContextMenu.dll" />
+
+    <!--Xamarin.Android-->
+    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\MonoAndroid10\ContextMenu.dll" />
+    <file src="ContextMenu.Droid\bin\Release\ContextMenu.Droid.dll" target="lib\MonoAndroid10\ContextMenu.Droid.dll" />
+
+    <!--Xamarin.iOS-->
+    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\Xamarin.iOS10\ContextMenu.dll" />
+    <file src="ContextMenu.Droid\bin\Release\ContextMenu.iOS.dll" target="lib\MonoAndroid10\ContextMenu.iOS.dll" />
+  </files>
+</package>
