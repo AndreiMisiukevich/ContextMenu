@@ -20,14 +20,14 @@
   </metadata>
   <files>
     <!--Net Standard-->
-    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\netstandard1.0\ContextMenu.dll" />
+    <file src="ContextMenu\bin\Release\netstandard2.0\ContextMenu.dll" target="lib\netstandard2.0\ContextMenu.dll" />
     <!--Core PCL-->
-    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\portable-win+net45+wp80+win81+wpa81\ContextMenu.dll" />
+    <file src="ContextMenu\bin\Release\netstandard2.0\ContextMenu.dll" target="lib\portable-win+net45+wp80+win81+wpa81\ContextMenu.dll" />
     <!--Xamarin.Android-->
-    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\MonoAndroid10\ContextMenu.dll" />
+    <file src="ContextMenu\bin\Release\netstandard2.0\ContextMenu.dll" target="lib\MonoAndroid10\ContextMenu.dll" />
     <file src="ContextMenu.Droid\bin\Release\ContextMenu.Droid.dll" target="lib\MonoAndroid10\ContextMenu.Droid.dll" />
     <!--Xamarin.iOS-->
-    <file src="ContextMenu\bin\Release\ContextMenu.dll" target="lib\Xamarin.iOS10\ContextMenu.dll" />
+    <file src="ContextMenu\bin\Release\netstandard2.0\ContextMenu.dll" target="lib\Xamarin.iOS10\ContextMenu.dll" />
     <file src="ContextMenu.iOS\bin\Release\ContextMenu.iOS.dll" target="lib\Xamarin.iOS10\ContextMenu.iOS.dll" />
   </files>
 </package>
