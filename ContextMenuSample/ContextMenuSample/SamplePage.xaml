@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+    x:Class="ContextMenuSample.SamplePage">
+	<ListView x:Name="SampleList"
+              RowHeight="80"
+              BackgroundColor="Black"
+              SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <context:ContextViewCell>
+                    <context:ContextViewCell.Content>
+                        <ContentView Margin="0, 5" 
+                                     BackgroundColor="White"
+                                     WidthRequest="320">
+                            <Label TextColor="Black"
+                                   FontSize="30"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand"
+                                   Text="{Binding .}"/>
+                        </ContentView>
+                    </context:ContextViewCell.Content>
+                    <context:ContextViewCell.ContextTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="0"
+                                         Margin="0, 5"
+                                         HorizontalOptions="Fill"
+                                         Orientation="Horizontal">
+                                
+                                <Button WidthRequest="80"
+                                        BackgroundColor="Red"
+                                        TextColor="Black"
+                                        Text="Red"
+                                        CommandParameter="Red"
+                                        Margin="5, 0, 0, 0"/>
+                                <Button WidthRequest="80"
+                                        BackgroundColor="Yellow"
+                                        TextColor="Black"
+                                        Text="Yellow"
+                                        CommandParameter="Yellow"
+                                        Margin="5, 0, 5, 0"/>
+                                <Button WidthRequest="80"
+                                        BackgroundColor="Green"
+                                        TextColor="Black"
+                                        Text="Green"
+                                        CommandParameter="Green"
+                                        Margin="0, 0, 5, 0"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </context:ContextViewCell.ContextTemplate>
+                </context:ContextViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

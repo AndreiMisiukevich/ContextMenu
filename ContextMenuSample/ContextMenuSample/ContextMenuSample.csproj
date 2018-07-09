@@ -10,4 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ContextMenu\ContextMenu.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="SamplePage.cs" />
+  </ItemGroup>
 </Project>

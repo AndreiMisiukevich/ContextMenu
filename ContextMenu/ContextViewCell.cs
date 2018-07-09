@@ -1,20 +1,26 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ContextMenu
 {
-	public abstract class ContextMenuViewCell : ViewCell
+	public class ContextViewCell : ViewCell
 	{
-		#region props
-		public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContextMenuViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
+		public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContextViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
 		{
-			(bindable as ContextMenuViewCell).SetContentView(newValue as View);
+			(bindable as ContextViewCell).SetContentView(newValue as View);
 		});
 
-		public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(ContextMenuViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
+		public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(ContextViewCell), null, propertyChanged: (bindable, oldValue, newValue) =>
 		{
-			(bindable as ContextMenuViewCell).IsContextChanged = true;
+			(bindable as ContextViewCell).IsContextChanged = true;
 		});
+
+		private bool IsContextChanged { get; set; }
+
+		public View Content
+		{
+			get => GetValue(ContentProperty) as View;
+			set => SetValue(ContentProperty, value);
+		}
 
 		public DataTemplate ContextTemplate
 		{
@@ -22,26 +28,15 @@ namespace ContextMenu
 			set => SetValue(ContextTemplateProperty, value);
 		}
 
-		public View Content
-		{
-			get => GetValue(ContentProperty) as View;
-			set => SetValue(ContentProperty, value);
-		}
-		#endregion
-
 		protected ContextMenuScrollView Scroll { get; } = new ContextMenuScrollView();
-		protected bool IsContextChanged { get; private set; }
 
-		public ContextMenuViewCell()
+		public ContextViewCell()
 		{
 			View = Scroll;
 		}
 
-		protected void ForceClose(bool animated = true)
+		public void ForceClose(bool animated = true)
 		=> Scroll.ForceCloseContextMenu(Scroll, animated);
-
-		protected void SetIsOneCanBeOpened(bool flag)
-		=> Scroll.IsOneMenuCanBeOpened = flag;
 
 		protected void SetContentView(View content)
 		=> (View as ContextMenuScrollView).ContentView = content;
@@ -49,23 +44,17 @@ namespace ContextMenu
 		protected void SetContextView(View context)
 		=> (View as ContextMenuScrollView).ContextView = context;
 
-		protected void SetView(View content, View context)
-		{
-			SetContentView(content);
-			SetContextView(context);
-		}
-
 		protected virtual void OnTouchStarted()
 		{
 			if (IsContextChanged)
 			{
 				IsContextChanged = false;
 
-				var template = ContextTemplate is DataTemplateSelector selector 
-					? selector.SelectTemplate(BindingContext, this) 
-	              	: ContextTemplate;
-				
-				if(template == null)
+				var template = ContextTemplate is DataTemplateSelector selector
+					? selector.SelectTemplate(BindingContext, this)
+					  : ContextTemplate;
+
+				if (template == null)
 				{
 					return;
 				}

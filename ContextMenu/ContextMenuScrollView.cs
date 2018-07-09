@@ -84,8 +84,6 @@ namespace ContextMenu
 
 		public bool IsClosed => CurrentState == GalleyScrollState.Closed;
 
-		public bool IsOneMenuCanBeOpened { get; set; } = true;
-
 		public async void ForceCloseContextMenu(ContextMenuScrollView view, bool animated)
 		{
 			if (view == null)
@@ -142,7 +140,7 @@ namespace ContextMenu
 						: ScrollX > width - GetMovingWidth(width);
 			await ScrollToAsync(isOpen ? width : 0, 0, true);
 
-			if (!HasBeenAccelerated && CheckIsOpen() && IsOneMenuCanBeOpened)
+			if (!HasBeenAccelerated && CheckIsOpen())
 			{
 				ContextMenuOpened?.Invoke();
 			}
@@ -150,15 +148,11 @@ namespace ContextMenu
 
 		public virtual async Task OnFlingStarted(bool needScroll = true, bool animated = true, bool inMainThread = false)
 		{
-			if (needScroll && IsOneMenuCanBeOpened)
-			{
-				ContextMenuOpened?.Invoke();
-			}
-
 			HasBeenAccelerated = true;
+
 			if (needScroll)
 			{
-
+				ContextMenuOpened?.Invoke();
 				var task = ScrollToAsync(IsOpenDirection ? GetContextViewWidth() : 0, 0, animated);
 				if (inMainThread)
 				{
