@@ -14,7 +14,7 @@
                     <context:ContextViewCell.Content>
                         <ContentView Margin="0, 5" 
                                      BackgroundColor="White"
-                                     WidthRequest="320">
+                                     WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
                             <Label TextColor="Black"
                                    FontSize="30"
                                    HorizontalOptions="CenterAndExpand"
