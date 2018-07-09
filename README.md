@@ -20,7 +20,23 @@ The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/bl
 
 **XAML:**
 ```xml
-
+    <ListView>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <context:ContextViewCell>
+                    <context:ContextViewCell.Content>
+                        //{YOUR MAIN VIEW HERE}
+                        </ContentView>
+                    </context:ContextViewCell.Content>
+                    <context:ContextViewCell.ContextTemplate>
+                        <DataTemplate>
+                            //{YOUR CONTEXT TEMPLATE HERE} you can use DataTemplateSelector too
+                        </DataTemplate>
+                    </context:ContextViewCell.ContextTemplate>
+                </context:ContextViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 ```
 
 Check source code for more info, or 🇧🇾 ***just ask me =)*** 🇧🇾
