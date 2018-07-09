@@ -21,6 +21,11 @@ namespace ContextMenu.Droid
 		private readonly GestureDetector _detector;
 		private bool _isAttachedNew;
 
+		[Obsolete("For Forms <= 2.4")]
+		public ContextMenuScrollViewRenderer()
+		{
+		}
+
 		public ContextMenuScrollViewRenderer(Context context) : base(context)
 		{
 			var listener = new GalleyGestureListener();
