@@ -12,7 +12,7 @@
 ## ContextViewCell
 This plugin provides opportunity to create custom context menu for every cell
 
-![Sample GIF](https://media.giphy.com/media/3oFzlV5tQhF1udDxIY/giphy.gif)
+![Sample GIF](https://media.giphy.com/media/pP3bDaKCnu8z1okVNn/giphy.gif)
 
 
 ## Samples
