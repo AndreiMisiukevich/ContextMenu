@@ -38,7 +38,7 @@ The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/bl
         </ListView.ItemTemplate>
     </ListView>
 ```
-**Make sure your main view width equals list's width**
+*Make sure your main view width equals list's width*
 You can adjust it by binding
 
 ```xml
@@ -51,6 +51,10 @@ You can adjust it by binding
                         <ContentView WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
                             ...
 ```
+
+**CSHARP:**
+
+The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/blob/master/ContextMenuSample/ContextMenuSample/CodeSamplePage.cs
 
 Check source code for more info, or 🇧🇾 ***just ask me =)*** 🇧🇾
 
