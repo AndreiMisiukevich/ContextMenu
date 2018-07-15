@@ -52,7 +52,7 @@ You can adjust it by binding
                             ...
 ```
 
-**CSHARP:**
+**C#:**
 
 The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/blob/master/ContextMenuSample/ContextMenuSample/CodeSamplePage.cs
 
