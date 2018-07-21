@@ -19,7 +19,7 @@ namespace ContextMenuSample
 			var button = sender as Button;
 			DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
 
-			(button.Parent.Parent.Parent.Parent as SideActionBarCell).ForceClose();
+			Device.BeginInvokeOnMainThread(() => (button.Parent.Parent.Parent.Parent as SideActionBarCell).ForceClose());
 		}
 	}
 }

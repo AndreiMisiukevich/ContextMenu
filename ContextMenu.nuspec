@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>ContextViewCell</id>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <title>ContextViewCell</title>
     <authors>Andrei Misiukevich</authors>
     <owners>Andrei Misiukevich</owners>

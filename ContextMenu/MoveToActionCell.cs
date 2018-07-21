@@ -19,9 +19,11 @@ namespace ContextMenu
 			View = _mainView;
 
 			ContextMenuOpened += (obj) => {
-				
-				Moved?.Invoke(BindingContext);
-				MovedCommand?.Execute(BindingContext);
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Moved?.Invoke(BindingContext);
+					MovedCommand?.Execute(BindingContext);
+				});
 			};
 		}
 
