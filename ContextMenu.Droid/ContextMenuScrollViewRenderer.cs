@@ -18,30 +18,43 @@ namespace ContextMenu.Droid
 	[Preserve(AllMembers = true)]
 	public class ContextMenuScrollViewRenderer : ScrollViewRenderer
 	{
-		private readonly GestureDetector _detector;
+		private GestureDetector _detector;
 		private bool _isAttachedNew;
 
 		[Obsolete("For Forms <= 2.4")]
 		public ContextMenuScrollViewRenderer()
 		{
+			CreateGestureDetector();
 		}
 
 		public ContextMenuScrollViewRenderer(Context context) : base(context)
 		{
-			var listener = new GalleyGestureListener();
-			_detector = new GestureDetector(listener);
-			listener.Flinged += OnFlinged;
+			CreateGestureDetector();
 		}
 
 		public override bool OnTouchEvent(MotionEvent ev)
 		{
-			_detector.OnTouchEvent(ev);
+			try
+			{
+				_detector.OnTouchEvent(ev);
+			}
+			catch(ObjectDisposedException)
+			{
+				CreateGestureDetector();
+			}
 			return base.OnTouchEvent(ev);
 		}
 
 		public override bool OnGenericMotionEvent(MotionEvent e)
 		{
-			_detector.OnGenericMotionEvent(e);
+			try
+			{
+				_detector.OnGenericMotionEvent(e);
+			}
+			catch (ObjectDisposedException)
+			{
+				CreateGestureDetector();
+			}
 			return base.OnGenericMotionEvent(e);
 		}
 
@@ -151,7 +164,7 @@ namespace ContextMenu.Droid
 			switch ((Element as XScrollView).Orientation)
 			{
 				case ScrollOrientation.Horizontal:
-					if(animated)
+					if (animated)
 					{
 						Device.BeginInvokeOnMainThread(() => hScrolView.SmoothScrollTo(x, y));
 						break;
@@ -172,7 +185,8 @@ namespace ContextMenu.Droid
 
 					if (animated)
 					{
-						Device.BeginInvokeOnMainThread(() => {
+						Device.BeginInvokeOnMainThread(() =>
+						{
 							hScrolView.SmoothScrollTo(x, y);
 							SmoothScrollTo(x, y);
 						});
@@ -186,10 +200,17 @@ namespace ContextMenu.Droid
 			Controller.SendScrollFinished();
 		}
 
+		private void CreateGestureDetector()
+		{
+			var listener = new ContextGestureListener();
+			_detector = new GestureDetector(listener);
+			listener.Flinged += OnFlinged;
+		}
+
 		#endregion
 	}
 
-	internal class GalleyGestureListener : GestureDetector.SimpleOnGestureListener
+	internal class ContextGestureListener : GestureDetector.SimpleOnGestureListener
 	{
 		internal event Action Flinged;
 

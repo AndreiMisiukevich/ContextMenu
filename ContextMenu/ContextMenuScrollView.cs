@@ -5,8 +5,8 @@ using Xamarin.Forms;
 
 namespace ContextMenu
 {
-	public enum GalleyScrollDirection { Close, Open }
-	public enum GalleyScrollState { Closed, Opened, Moving }
+	public enum ScrollDirection { Close, Open }
+	public enum ScrollState { Closed, Opened, Moving }
 
 	public class ContextMenuScrollView : ScrollView
 	{
@@ -15,16 +15,6 @@ namespace ContextMenu
 
 		private View _contentView;
 		private View _contextView = new ContentView { WidthRequest = 1 };
-
-		public StackLayout ViewStack { get; }
-		public GalleyScrollDirection CurrentDirection { get; private set; }
-		public GalleyScrollState CurrentState { get; private set; }
-		public bool HasBeenAccelerated { get; private set; }
-		public double PrevScrollX { get; private set; }
-		public bool IsInteracted { get; private set; }
-
-		public bool IsOpenDirection => CurrentDirection == GalleyScrollDirection.Open;
-		public bool IsDirectionAndStateSame => (int)CurrentDirection == (int)CurrentState;
 
 		public ContextMenuScrollView()
 		{
@@ -45,6 +35,15 @@ namespace ContextMenu
 
 			Scrolled += OnScrolled;
 		}
+
+		protected StackLayout ViewStack { get; }
+		protected ScrollDirection CurrentDirection { get; private set; }
+		protected ScrollState CurrentState { get; private set; }
+		protected bool HasBeenAccelerated { get; private set; }
+		protected double PrevScrollX { get; private set; }
+		protected bool IsInteracted { get; private set; }
+		protected bool IsOpenDirection => CurrentDirection == ScrollDirection.Open;
+		protected bool IsDirectionAndStateSame => (int)CurrentDirection == (int)CurrentState;
 
 		public View ContentView
 		{
@@ -83,8 +82,6 @@ namespace ContextMenu
 			}
 		}
 
-		public bool IsClosed => CurrentState == GalleyScrollState.Closed;
-
 		public async void ForceCloseContextMenu(ContextMenuScrollView view, bool animated)
 		{
 			if (view == null)
@@ -96,12 +93,12 @@ namespace ContextMenu
 			{
 				if (view.ScrollX > 0)
 				{
-					await view.ScrollToAsync(0, 0, animated);;
+					await view.ScrollToAsync(0, 0, animated);
 				}
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine(ex);
+				Console.WriteLine(ex);
 			}
 		}
 
@@ -126,7 +123,7 @@ namespace ContextMenu
 				return;
 			}
 
-			var width = GetContextViewWidth();
+			var width = ContextView.Width;
 			var isOpen = IsOpenDirection
 						? ScrollX > GetMovingWidth(width)
 						: ScrollX > width - GetMovingWidth(width);
@@ -139,7 +136,7 @@ namespace ContextMenu
 
 			if (needScroll)
 			{
-				var task = ScrollToAsync(IsOpenDirection ? GetContextViewWidth() : 0, 0, animated);
+				var task = ScrollToAsync(IsOpenDirection ? ContextView.Width : 0, 0, animated);
 				if (inMainThread)
 				{
 					var completionSource = new TaskCompletionSource<bool>();
@@ -158,8 +155,8 @@ namespace ContextMenu
 		public async Task MoveSideMenu(bool isOpen = false, bool animated = true)
 		{
 			CurrentDirection = isOpen
-				? GalleyScrollDirection.Open
-				: GalleyScrollDirection.Close;
+				? ScrollDirection.Open
+				: ScrollDirection.Close;
 
 			await OnFlingStarted(!IsDirectionAndStateSame, animated, true);
 		}
@@ -174,39 +171,37 @@ namespace ContextMenu
 			CurrentDirection = Math.Abs(PrevScrollX - ScrollX) < double.Epsilon
 					? CurrentDirection
 					: PrevScrollX > ScrollX
-						? GalleyScrollDirection.Close
-						: GalleyScrollDirection.Open;
+						? ScrollDirection.Close
+						: ScrollDirection.Open;
 			PrevScrollX = ScrollX;
 
 			CheckScrollState();
 			CheckActionBarOpened();
 		}
 
-		protected virtual void CheckScrollState()
+		protected virtual double GetMovingWidth(double contextWidth)
+		=> contextWidth * 0.33;
+
+		protected void CheckScrollState()
 		{
 			if (Math.Abs(ScrollX) <= double.Epsilon)
 			{
-				CurrentState = GalleyScrollState.Closed;
+				CurrentState = ScrollState.Closed;
+				return;
 			}
-			else if (Math.Abs(ScrollX - GetContextViewWidth()) <= double.Epsilon)
+
+			if (Math.Abs(ScrollX - ContextView.Width) <= double.Epsilon)
 			{
-				CurrentState = GalleyScrollState.Opened;
+				CurrentState = ScrollState.Opened;
+				return;
 			}
-			else
-			{
-				CurrentState = GalleyScrollState.Moving;
-			}
+
+			CurrentState = ScrollState.Moving;
 		}
-
-		protected virtual double GetContextViewWidth() 
-		=> ContextView.Width;
-
-		protected virtual double GetMovingWidth(double contextWidth)
-		=> contextWidth * 0.3;
 
 		protected bool CheckIsOpen()
 		{
-			var width = GetContextViewWidth();
+			var width = ContextView.Width;
 			return IsOpenDirection
 							? ScrollX > GetMovingWidth(width)
 							: ScrollX > width - GetMovingWidth(width);
@@ -214,7 +209,7 @@ namespace ContextMenu
 
 		protected void CheckActionBarOpened()
 		{
-			if(ScrollX >= GetContextViewWidth() && !IsInteracted)
+			if(ScrollX >= ContextView.Width && !IsInteracted)
 			{
 				ActionBarOpened?.Invoke();
 			}
