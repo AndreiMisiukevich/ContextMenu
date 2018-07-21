@@ -2,23 +2,27 @@
 using Xamarin.Forms;
 using ContextMenu;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace ContextMenuSample
 {
-	public class CodeSamplePage : ContentPage
+	public class MoveToActionSamplePage : ContentPage
 	{
-		public CodeSamplePage()
+		public MoveToActionSamplePage()
 		{
+			var items = new ObservableCollection<int>(Enumerable.Range(0, 300));
+
 			var sampleList = new ListView
 			{
 				RowHeight = 80,
 				BackgroundColor = Color.Black,
 				SeparatorVisibility = SeparatorVisibility.None,
-				ItemsSource = Enumerable.Range(0, 300)
+				ItemsSource = items
 			};
 
-			sampleList.ItemTemplate = new DataTemplate(() => new ContextViewCell
+			sampleList.ItemTemplate = new DataTemplate(() => new MoveToActionCell
 			{
+				MovedCommand = new Command(p => items.Remove((int)p)),
 				Content = new ContentView
 				{
 					Margin = new Thickness(0, 5),
@@ -32,38 +36,19 @@ namespace ContextMenuSample
 					}.With(v => v.SetBinding(Label.TextProperty, "."))
 				}.With(v => v.SetBinding(WidthRequestProperty, new Binding { Source = sampleList, Path = nameof(Width)})),
 				ContextTemplate = new DataTemplate(() => new StackLayout {
-					Spacing = 0,
 					Margin = new Thickness(0, 5),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal,
+					BackgroundColor = Color.Red,
 					Children = {
-						new Button
+						new Label
 						{
-							WidthRequest = 80,
-							BackgroundColor = Color.Red,
-							TextColor = Color.Black,
-							Text = "Red",
-							CommandParameter = "Red",
-							Margin = new Thickness(5, 0, 0, 0)
-						}.With(v => v.Clicked += OnClicked),
-						new Button
-						{
-							WidthRequest = 80,
-							BackgroundColor = Color.Yellow,
-							TextColor = Color.Black,
-							Text = "Yellow",
-							CommandParameter = "Yellow",
-							Margin = new Thickness(5, 0, 5, 0),
-						}.With(v => v.Clicked += OnClicked),
-						new Button
-						{
-							WidthRequest = 80,
-							BackgroundColor = Color.Green,
-							TextColor = Color.Black,
-							Text = "Green",
-							CommandParameter = "Green",
-							Margin = new Thickness(0, 0, 5, 0)
-						}.With(v => v.Clicked += OnClicked)
+							Text = "Move to Delete",
+							TextColor = Color.White,
+							FontAttributes = FontAttributes.Bold,
+							VerticalOptions = LayoutOptions.CenterAndExpand,
+							HorizontalOptions = LayoutOptions.EndAndExpand,
+							HorizontalTextAlignment = TextAlignment.End,
+							VerticalTextAlignment = TextAlignment.Center
+						}
 					}
 				})
 			});
@@ -75,7 +60,7 @@ namespace ContextMenuSample
 		{
 			var button = sender as Button;
 			DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
-			(button.Parent.Parent.Parent.Parent as ContextViewCell).ForceClose();
+			(button.Parent.Parent.Parent.Parent as MoveToActionCell).ForceClose();
 		}
 	}
 

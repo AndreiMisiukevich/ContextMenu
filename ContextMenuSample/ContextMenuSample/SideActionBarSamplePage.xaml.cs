@@ -6,9 +6,9 @@ using ContextMenu;
 
 namespace ContextMenuSample
 {
-	public partial class SamplePage : ContentPage
+	public partial class SideActionBarSamplePage : ContentPage
 	{
-		public SamplePage()
+		public SideActionBarSamplePage()
 		{
 			InitializeComponent();
 			SampleList.ItemsSource = Enumerable.Range(0, 300);
@@ -19,7 +19,7 @@ namespace ContextMenuSample
 			var button = sender as Button;
 			DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
 
-			(button.Parent.Parent.Parent.Parent as ContextViewCell).ForceClose();
+			(button.Parent.Parent.Parent.Parent as SideActionBarCell).ForceClose();
 		}
 	}
 }

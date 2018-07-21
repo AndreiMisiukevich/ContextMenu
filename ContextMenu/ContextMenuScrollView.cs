@@ -11,7 +11,7 @@ namespace ContextMenu
 	public class ContextMenuScrollView : ScrollView
 	{
 		public event Action TouchStarted;
-		public event Action ContextMenuOpened;
+		public event Action ActionBarOpened;
 
 		private View _contentView;
 		private View _contextView = new ContentView { WidthRequest = 1 };
@@ -21,6 +21,7 @@ namespace ContextMenu
 		public GalleyScrollState CurrentState { get; private set; }
 		public bool HasBeenAccelerated { get; private set; }
 		public double PrevScrollX { get; private set; }
+		public bool IsInteracted { get; private set; }
 
 		public bool IsOpenDirection => CurrentDirection == GalleyScrollDirection.Open;
 		public bool IsDirectionAndStateSame => (int)CurrentDirection == (int)CurrentState;
@@ -95,19 +96,7 @@ namespace ContextMenu
 			{
 				if (view.ScrollX > 0)
 				{
-					var task = view.ScrollToAsync(0, 0, animated);
-					if (view == null)
-					{
-						var completionSource = new TaskCompletionSource<bool>();
-						Device.BeginInvokeOnMainThread(async () =>
-						{
-							await task;
-							completionSource.SetResult(true);
-						});
-						await completionSource.Task;
-						return;
-					}
-					await task;
+					await view.ScrollToAsync(0, 0, animated);;
 				}
 			}
 			catch (Exception ex)
@@ -118,12 +107,15 @@ namespace ContextMenu
 
 		public virtual void OnTouchStarted()
 		{
+			IsInteracted = true;
 			TouchStarted?.Invoke();
 			HasBeenAccelerated = false;
 		}
 
 		public virtual async void OnTouchEnded()
 		{
+			IsInteracted = false;
+			CheckActionBarOpened();
 			if (Device.RuntimePlatform == Device.Android)
 			{
 				await Task.Delay(10);
@@ -139,11 +131,6 @@ namespace ContextMenu
 						? ScrollX > GetMovingWidth(width)
 						: ScrollX > width - GetMovingWidth(width);
 			await ScrollToAsync(isOpen ? width : 0, 0, true);
-
-			if (!HasBeenAccelerated && CheckIsOpen())
-			{
-				ContextMenuOpened?.Invoke();
-			}
 		}
 
 		public virtual async Task OnFlingStarted(bool needScroll = true, bool animated = true, bool inMainThread = false)
@@ -152,7 +139,6 @@ namespace ContextMenu
 
 			if (needScroll)
 			{
-				ContextMenuOpened?.Invoke();
 				var task = ScrollToAsync(IsOpenDirection ? GetContextViewWidth() : 0, 0, animated);
 				if (inMainThread)
 				{
@@ -193,6 +179,7 @@ namespace ContextMenu
 			PrevScrollX = ScrollX;
 
 			CheckScrollState();
+			CheckActionBarOpened();
 		}
 
 		protected virtual void CheckScrollState()
@@ -223,6 +210,14 @@ namespace ContextMenu
 			return IsOpenDirection
 							? ScrollX > GetMovingWidth(width)
 							: ScrollX > width - GetMovingWidth(width);
+		}
+
+		protected void CheckActionBarOpened()
+		{
+			if(ScrollX >= GetContextViewWidth() && !IsInteracted)
+			{
+				ActionBarOpened?.Invoke();
+			}
 		}
 	}
 }

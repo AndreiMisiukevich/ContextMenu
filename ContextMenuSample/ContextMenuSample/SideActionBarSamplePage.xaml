@@ -3,15 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
-    x:Class="ContextMenuSample.SamplePage">
-	<ListView x:Name="SampleList"
+    x:Class="ContextMenuSample.SideActionBarSamplePage">
+    <ListView x:Name="SampleList"
               RowHeight="80"
               BackgroundColor="Black"
               SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <context:ContextViewCell>
-                    <context:ContextViewCell.Content>
+                <context:SideActionBarCell>
+                    <context:SideActionBarCell.Content>
                         <ContentView Margin="0, 5" 
                                      BackgroundColor="White"
                                      WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
@@ -21,8 +21,8 @@
                                    VerticalOptions="CenterAndExpand"
                                    Text="{Binding .}"/>
                         </ContentView>
-                    </context:ContextViewCell.Content>
-                    <context:ContextViewCell.ContextTemplate>
+                    </context:SideActionBarCell.Content>
+                    <context:SideActionBarCell.ContextTemplate>
                         <DataTemplate>
                             <StackLayout Spacing="0"
                                          Margin="0, 5"
@@ -52,8 +52,8 @@
                                         Clicked="OnClicked"/>
                             </StackLayout>
                         </DataTemplate>
-                    </context:ContextViewCell.ContextTemplate>
-                </context:ContextViewCell>
+                    </context:SideActionBarCell.ContextTemplate>
+                </context:SideActionBarCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
