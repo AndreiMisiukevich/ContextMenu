@@ -1,4 +1,4 @@
-# ContextViewCell control for Xamarin Forms
+# SideActionBarCell | MoveToActionCell controls for Xamarin Forms
 
 ## Setup
 * Available on NuGet: [ContextViewCell](http://www.nuget.org/packages/ContextViewCell) [![NuGet](https://img.shields.io/nuget/v/ContextViewCell.svg?label=NuGet)](https://www.nuget.org/packages/ContextViewCell)
@@ -9,11 +9,15 @@
 |Xamarin.iOS|8.0+|
 |Xamarin.Android|15+|
 
-## ContextViewCell
+## SideActionBarCell
 This plugin provides opportunity to create custom context menu for every cell
 
 ![Sample GIF](https://media.giphy.com/media/pP3bDaKCnu8z1okVNn/giphy.gif)
 
+## MoveToActionCell
+Also you can create move-to-action cells (for example Move to delete)
+
+![Sample GIF](https://media.giphy.com/media/9rlYdGT8ViR3shCSKR/giphy.gif)
 
 ## Samples
 The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/blob/master/ContextMenuSample/ContextMenuSample/SamplePage.xaml
@@ -23,17 +27,17 @@ The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/bl
     <ListView>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <context:ContextViewCell>
-                    <context:ContextViewCell.Content>
+                <context:SideActionBarCell>
+                    <context:SideActionBarCell.Content>
                         //{YOUR MAIN VIEW HERE}
                         </ContentView>
-                    </context:ContextViewCell.Content>
-                    <context:ContextViewCell.ContextTemplate>
+                    </context:SideActionBarCell.Content>
+                    <context:SideActionBarCell.ContextTemplate>
                         <DataTemplate>
                             //{YOUR CONTEXT TEMPLATE HERE} you can use DataTemplateSelector too
                         </DataTemplate>
-                    </context:ContextViewCell.ContextTemplate>
-                </context:ContextViewCell>
+                    </context:SideActionBarCell.ContextTemplate>
+                </context:SideActionBarCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
@@ -46,15 +50,15 @@ You can adjust it by binding
 <ListView x:Name="SampleList"
         <ListView.ItemTemplate>
             <DataTemplate>
-                <context:ContextViewCell>
-                    <context:ContextViewCell.Content>
+                <context:SideActionBarCell>
+                    <context:SideActionBarCell.Content>
                         <ContentView WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
                             ...
 ```
 
 **C#:**
 
-The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/blob/master/ContextMenuSample/ContextMenuSample/CodeSamplePage.cs
+The sample you can find here https://github.com/AndreiMisiukevich/ContextMenu/blob/master/ContextMenuSample/ContextMenuSample
 
 Check source code for more info, or 🇧🇾 ***just ask me =)*** 🇧🇾
 
