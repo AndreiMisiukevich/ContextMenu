@@ -1,11 +1,12 @@
 ﻿using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ContextMenu
 {
     public class SideActionBarCell : BaseActionViewCell
     {
-        private static readonly Dictionary<Element, BaseActionViewCell> _cellBindings = new Dictionary<Element, BaseActionViewCell>();
+        public static SideActionBarCell LastOpenedCell { get; private set; }
 
         public SideActionBarCell()
         {
@@ -15,15 +16,12 @@ namespace ContextMenu
 
         protected virtual void OnTouchStarted(BaseActionViewCell sender)
         {
-            if (_cellBindings.TryGetValue(Parent, out BaseActionViewCell cell))
+            if (LastOpenedCell == this)
             {
-                if (cell == this)
-                {
-                    return;
-                }
-                cell.ForceClose();
+                return;
             }
-            _cellBindings[Parent] = this;
+            LastOpenedCell?.ForceClose();
+            LastOpenedCell = this;
         }
 
         protected override void SetContextView(View context)
@@ -31,11 +29,10 @@ namespace ContextMenu
 
         protected override void OnDisappearing()
         {
-            base.OnDisappearing();
-            if (_cellBindings.TryGetValue(Parent, out BaseActionViewCell cell) && cell == this)
+            if (this == LastOpenedCell)
             {
-                ForceClose(false);
-                _cellBindings.Remove(Parent);
+                LastOpenedCell?.ForceClose(false);
+                LastOpenedCell = null;
             }
         }
     }
