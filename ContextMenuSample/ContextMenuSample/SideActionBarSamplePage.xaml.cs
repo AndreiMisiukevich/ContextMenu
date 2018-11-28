@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Xamarin.Forms;
 using ContextMenu;
+using Xamarin.Forms;
 
 namespace ContextMenuSample
 {
-	public partial class SideActionBarSamplePage : ContentPage
-	{
-		public SideActionBarSamplePage()
-		{
-			InitializeComponent();
-			SampleList.ItemsSource = Enumerable.Range(0, 300);
-		}
+    public partial class SideActionBarSamplePage : BaseContentPage
+    {
+        public SideActionBarSamplePage()
+        {
+            InitializeComponent();
+            SampleList.ItemsSource = Enumerable.Range(0, 300);
+        }
 
-		private void OnClicked(object sender, EventArgs e)
-		{
-			var button = sender as Button;
-			DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
+        private void OnClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
 
-			Device.BeginInvokeOnMainThread(() => (button.Parent.Parent.Parent.Parent as SideActionBarCell).ForceClose());
-		}
-	}
+            Device.BeginInvokeOnMainThread(() => GetParent<SideActionBarCell>(button, button.Parent).ForceClose());
+        }
+    }
 }
