@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
+<local:BaseContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+    xmlns:local="clr-namespace:ContextMenuSample"
     x:Class="ContextMenuSample.SideActionBarSamplePage">
     <ListView x:Name="SampleList"
               RowHeight="80"
@@ -57,4 +58,4 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-</ContentPage>
+</local:BaseContentPage>
