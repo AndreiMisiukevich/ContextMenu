@@ -24,7 +24,6 @@ namespace ContextMenuSample
             {
                 var cell = new MoveToActionCell
                 {
-                    IsAutoCloseEnabled = true,
                     MovedCommand = new Command<MessageModel>(OnMovedExecuted),
                     Content = new ContentView
                     {

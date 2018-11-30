@@ -22,6 +22,7 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() => new MoveToActionCell
             {
+                IsAutoCloseEnabled = false,
                 MovedCommand = new Command(p => items.Remove((int)p)),
                 Content = new ContentView
                 {
