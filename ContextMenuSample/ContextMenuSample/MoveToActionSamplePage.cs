@@ -64,13 +64,4 @@ namespace ContextMenuSample
             GetParent<MoveToActionCell>(button, button.Parent).ForceClose();
         }
     }
-
-    public static class BindingExtensions
-    {
-        public static TView With<TView>(this TView view, Action<TView> action) where TView : View
-        {
-            action?.Invoke(view);
-            return view;
-        }
-    }
 }
