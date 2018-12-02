@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>ContextViewCell</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>ContextViewCell</title>
     <authors>Andrei Misiukevich</authors>
     <owners>Andrei Misiukevich</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://cdn2.iconfinder.com/data/icons/it-technology/70/phonewebsite-512.png</iconUrl>
     <description>Custom context menu for Xamarin Forms view cell</description>
     <summary>This plugin provides opportunity to create custom context menu for every cell</summary>
-    <tags>contextviewcell, viewcell, menucell, context menu, context menu viewcell, forms, contextbar, viewcell right menu, contextbar</tags>
+    <tags>contextviewcell, viewcell, menucell, context menu, context menu viewcell, forms, contextbar, viewcell right menu, contextbar, context actions, contextactions</tags>
     <dependencies>
       <group>
           <dependency id="Xamarin.Forms" version="2.4" />
