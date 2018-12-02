@@ -15,6 +15,8 @@ namespace ContextMenu
             (bindable as BaseActionViewCell).IsContextChanged = true;
         });
 
+        public static readonly BindableProperty IsAutoCloseEnabledProperty = BindableProperty.Create(nameof(IsAutoCloseEnabled), typeof(bool), typeof(MoveToActionCell), true);
+
         public event Action<BaseActionViewCell> ContextMenuOpened;
 
         public event Action<BaseActionViewCell> TouchStarted;
@@ -31,6 +33,12 @@ namespace ContextMenu
         {
             get => GetValue(ContextTemplateProperty) as DataTemplate;
             set => SetValue(ContextTemplateProperty, value);
+        }
+
+        public bool IsAutoCloseEnabled
+        {
+            get => (bool)GetValue(IsAutoCloseEnabledProperty);
+            set => SetValue(IsAutoCloseEnabledProperty, value);
         }
 
         protected ContextMenuScrollView Scroll { get; } = new ContextMenuScrollView();

@@ -1,6 +1,4 @@
 ﻿using Xamarin.Forms;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace ContextMenu
 {
@@ -16,12 +14,10 @@ namespace ContextMenu
 
         protected virtual void OnTouchStarted(BaseActionViewCell sender)
         {
-            if (LastOpenedCell == this)
+            if (LastOpenedCell != this)
             {
-                return;
+                SetLastOpenedCell(this);
             }
-            LastOpenedCell?.ForceClose();
-            LastOpenedCell = this;
         }
 
         protected override void SetContextView(View context)
@@ -29,11 +25,19 @@ namespace ContextMenu
 
         protected override void OnDisappearing()
         {
-            if (this == LastOpenedCell)
+            if (LastOpenedCell == this)
             {
-                LastOpenedCell?.ForceClose(false);
-                LastOpenedCell = null;
+                SetLastOpenedCell(null);
             }
+        }
+
+        private void SetLastOpenedCell(SideActionBarCell cell)
+        {
+            if (IsAutoCloseEnabled)
+            {
+                LastOpenedCell?.ForceClose();
+            }
+            LastOpenedCell = cell;
         }
     }
 }
