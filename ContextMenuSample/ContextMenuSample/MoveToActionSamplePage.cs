@@ -22,6 +22,7 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() => new MoveToActionCell
             {
+                IsAutoCloseEnabled = false,
                 MovedCommand = new Command(p => items.Remove((int)p)),
                 Content = new ContentView
                 {
@@ -62,15 +63,6 @@ namespace ContextMenuSample
             var button = sender as Button;
             DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
             GetParent<MoveToActionCell>(button, button.Parent).ForceClose();
-        }
-    }
-
-    public static class BindingExtensions
-    {
-        public static TView With<TView>(this TView view, Action<TView> action) where TView : View
-        {
-            action?.Invoke(view);
-            return view;
         }
     }
 }

@@ -13,4 +13,7 @@
   <ItemGroup>
     <Compile Remove="SamplePage.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
 </Project>
