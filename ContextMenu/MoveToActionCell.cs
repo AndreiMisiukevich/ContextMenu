@@ -23,10 +23,10 @@ namespace ContextMenu
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Moved?.Invoke(BindingContext);
-                    MovedCommand?.Execute(BindingContext);
                     if (IsAutoCloseEnabled)
                         ForceClose();
+                    Moved?.Invoke(BindingContext);
+                    MovedCommand?.Execute(BindingContext);
                 });
             };
         }
