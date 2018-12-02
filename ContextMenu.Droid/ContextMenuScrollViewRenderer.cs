@@ -203,7 +203,7 @@ namespace ContextMenu.Droid
 		private void CreateGestureDetector()
 		{
 			var listener = new ContextGestureListener();
-			_detector = new GestureDetector(listener);
+			_detector = new GestureDetector(Context, listener);
 			listener.Flinged += OnFlinged;
 		}
 
