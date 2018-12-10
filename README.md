@@ -3,6 +3,7 @@
 ## Setup
 * Available on NuGet: [ContextViewCell](http://www.nuget.org/packages/ContextViewCell) [![NuGet](https://img.shields.io/nuget/v/ContextViewCell.svg?label=NuGet)](https://www.nuget.org/packages/ContextViewCell)
 * Add nuget package to your Xamarin.Forms .netStandard/PCL project and to your platform-specific projects (iOS and Android)
+* Call ```ContextMenuScrollViewRenderer.Initialize()``` in AppDelagate for **iOS** for preserving linking.
 
 |Platform|Version|
 | ------------------- | ------------------- |
