@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -12,6 +11,7 @@ namespace ContextMenu
     {
         public event Action TouchStarted;
         public event Action ActionBarOpened;
+        public event Action ActionBarClosed;
 
         private View _contentView;
         private View _contextView = new ContentView { WidthRequest = 1 };
@@ -82,6 +82,8 @@ namespace ContextMenu
             }
         }
 
+        public double MovingWidthMultiplier { get; set; } = 0.33;
+
         public async void ForceCloseContextMenu(ContextMenuScrollView view, bool animated)
         {
             if (view == null)
@@ -102,6 +104,24 @@ namespace ContextMenu
             }
         }
 
+        public async void ForceOpenContextMenu(ContextMenuScrollView view, bool animated)
+        {
+            var width = view?.ContextView?.Width;
+            if (width.GetValueOrDefault() <= 0)
+            {
+                return;
+            }
+
+            try
+            {
+                await view.ScrollToAsync(width.Value, 0, animated);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
         public virtual void OnTouchStarted()
         {
             IsInteracted = true;
@@ -112,7 +132,7 @@ namespace ContextMenu
         public virtual async void OnTouchEnded()
         {
             IsInteracted = false;
-            CheckActionBarOpened();
+            CheckActionBarState();
             if (Device.RuntimePlatform == Device.Android)
             {
                 await Task.Delay(10);
@@ -176,11 +196,11 @@ namespace ContextMenu
             PrevScrollX = ScrollX;
 
             CheckScrollState();
-            CheckActionBarOpened();
+            CheckActionBarState();
         }
 
-        protected virtual double GetMovingWidth(double contextWidth)
-        => contextWidth * 0.33;
+        protected double GetMovingWidth(double contextWidth)
+        => contextWidth * MovingWidthMultiplier;
 
         protected void CheckScrollState()
         {
@@ -207,11 +227,21 @@ namespace ContextMenu
                             : ScrollX > width - GetMovingWidth(width);
         }
 
-        protected void CheckActionBarOpened()
+        protected void CheckActionBarState()
         {
-            if (ScrollX >= ContextView.Width && !IsInteracted)
+            if(IsInteracted)
+            {
+                return;
+            }
+
+            if (ScrollX >= ContextView.Width)
             {
                 ActionBarOpened?.Invoke();
+                return;
+            }
+            if (ScrollX <= 0)
+            {
+                ActionBarClosed?.Invoke();
             }
         }
     }

@@ -13,15 +13,27 @@
             <DataTemplate>
                 <context:SideActionBarCell>
                     <context:SideActionBarCell.Content>
-                        <ContentView Margin="0, 5" 
+                        <StackLayout Margin="0, 5" 
                                      BackgroundColor="White"
+                                     Orientation="Horizontal"
                                      WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
                             <Label TextColor="Black"
                                    FontSize="30"
                                    HorizontalOptions="CenterAndExpand"
                                    VerticalOptions="CenterAndExpand"
                                    Text="{Binding .}"/>
-                        </ContentView>
+                            <Button TextColor="White"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="CenterAndExpand"
+                                    FontSize="12"
+                                    WidthRequest="50"
+                                    HeightRequest="50"
+                                    CornerRadius="25"
+                                    BackgroundColor="Black"
+                                    Margin="10, 0"
+                                    Text="open" 
+                                    Clicked="OnOpenClicked"/>
+                        </StackLayout>
                     </context:SideActionBarCell.Content>
                     <context:SideActionBarCell.ContextTemplate>
                         <DataTemplate>

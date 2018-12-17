@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using System;
+using System.Threading.Tasks;
 
 namespace ContextMenu
 {
@@ -18,6 +19,8 @@ namespace ContextMenu
         public static readonly BindableProperty IsAutoCloseEnabledProperty = BindableProperty.Create(nameof(IsAutoCloseEnabled), typeof(bool), typeof(MoveToActionCell), true);
 
         public event Action<BaseActionViewCell> ContextMenuOpened;
+
+        public event Action<BaseActionViewCell> ContextMenuClosed;
 
         public event Action<BaseActionViewCell> TouchStarted;
 
@@ -46,6 +49,38 @@ namespace ContextMenu
         public void ForceClose(bool animated = true)
         => Scroll.ForceCloseContextMenu(Scroll, animated);
 
+        public virtual async void ForceOpen(bool animated = true)
+        {
+            SetContextViewIfNeeded();
+            var context = Scroll.ContextView;
+            if(context == null)
+            {
+                return;
+            }
+            var width = Math.Max(context.Width, context.WidthRequest);
+            var widthCompletionSource = new TaskCompletionSource<bool>();
+            if(width <= 0)
+            {
+                EventHandler onSizeChanged = null;
+                onSizeChanged = (sender, e) =>
+                {
+                    var v = (View)sender;
+                    if (v.Width > 0 && v.Height > 0)
+                    {
+                        v.SizeChanged -= onSizeChanged;
+                        widthCompletionSource.SetResult(true);
+                    }
+                };
+                context.SizeChanged += onSizeChanged;
+            }
+            else
+            {
+                widthCompletionSource.SetResult(true);
+            }
+            await widthCompletionSource.Task;
+            Scroll.ForceOpenContextMenu(Scroll, animated);
+        }
+
         protected void SetContentView(View content)
         => Scroll.ContentView = content;
 
@@ -56,6 +91,7 @@ namespace ContextMenu
             base.OnAppearing();
             Scroll.TouchStarted += OnTouchStarted;
             Scroll.ActionBarOpened += OnContextMenuOpened;
+            Scroll.ActionBarClosed += OnContextMenuClosed;
         }
 
         protected override void OnDisappearing()
@@ -63,6 +99,7 @@ namespace ContextMenu
             base.OnDisappearing();
             Scroll.TouchStarted -= OnTouchStarted;
             Scroll.ActionBarOpened -= OnContextMenuOpened;
+            Scroll.ActionBarClosed -= OnContextMenuClosed;
         }
 
         protected override void OnBindingContextChanged()
@@ -75,6 +112,11 @@ namespace ContextMenu
         private void OnTouchStarted()
         {
             TouchStarted?.Invoke(this);
+            SetContextViewIfNeeded();
+        }
+
+        private void SetContextViewIfNeeded()
+        {
             if (IsContextChanged)
             {
                 IsContextChanged = false;
@@ -92,5 +134,7 @@ namespace ContextMenu
         }
 
         private void OnContextMenuOpened() => ContextMenuOpened?.Invoke(this);
+
+        private void OnContextMenuClosed() => ContextMenuClosed?.Invoke(this);
     }
 }

@@ -12,6 +12,12 @@ namespace ContextMenu
             TouchStarted += OnTouchStarted;
         }
 
+        public override void ForceOpen(bool animated = true)
+        {
+            OnTouchStarted(this);
+            base.ForceOpen(animated);
+        }
+
         protected virtual void OnTouchStarted(BaseActionViewCell sender)
         {
             if (LastOpenedCell != this)
