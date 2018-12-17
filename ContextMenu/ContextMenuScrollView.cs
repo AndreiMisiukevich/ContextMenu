@@ -10,6 +10,7 @@ namespace ContextMenu
     public class ContextMenuScrollView : ScrollView
     {
         public event Action TouchStarted;
+        public event Action TouchEnded;
         public event Action ActionBarOpened;
         public event Action ActionBarClosed;
 
@@ -132,6 +133,7 @@ namespace ContextMenu
         public virtual async void OnTouchEnded()
         {
             IsInteracted = false;
+            TouchEnded?.Invoke();
             CheckActionBarState();
             if (Device.RuntimePlatform == Device.Android)
             {

@@ -24,6 +24,8 @@ namespace ContextMenu
 
         public event Action<BaseActionViewCell> TouchStarted;
 
+        public event Action<BaseActionViewCell> TouchEnded;
+
         private bool IsContextChanged { get; set; }
 
         public View Content
@@ -90,6 +92,7 @@ namespace ContextMenu
         {
             base.OnAppearing();
             Scroll.TouchStarted += OnTouchStarted;
+            Scroll.TouchEnded += OnTouchEnded;
             Scroll.ActionBarOpened += OnContextMenuOpened;
             Scroll.ActionBarClosed += OnContextMenuClosed;
         }
@@ -98,6 +101,7 @@ namespace ContextMenu
         {
             base.OnDisappearing();
             Scroll.TouchStarted -= OnTouchStarted;
+            Scroll.TouchEnded -= OnTouchEnded;
             Scroll.ActionBarOpened -= OnContextMenuOpened;
             Scroll.ActionBarClosed -= OnContextMenuClosed;
         }
@@ -114,6 +118,8 @@ namespace ContextMenu
             TouchStarted?.Invoke(this);
             SetContextViewIfNeeded();
         }
+
+        private void OnTouchEnded() => TouchEnded?.Invoke(this);
 
         private void SetContextViewIfNeeded()
         {

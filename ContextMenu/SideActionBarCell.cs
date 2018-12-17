@@ -10,21 +10,20 @@ namespace ContextMenu
         {
             View = Scroll;
             TouchStarted += OnTouchStarted;
+            TouchEnded += OnTouchEnded;
         }
 
         public override void ForceOpen(bool animated = true)
         {
-            OnTouchStarted(this);
+            SetThisAsLastOpenedCell();
             base.ForceOpen(animated);
         }
 
         protected virtual void OnTouchStarted(BaseActionViewCell sender)
-        {
-            if (LastOpenedCell != this)
-            {
-                SetLastOpenedCell(this);
-            }
-        }
+        => SetThisAsLastOpenedCell();
+
+        protected virtual void OnTouchEnded(BaseActionViewCell sender)
+        => SetThisAsLastOpenedCell();
 
         protected override void SetContextView(View context)
         => (View as ContextMenuScrollView).ContextView = context;
@@ -34,6 +33,14 @@ namespace ContextMenu
             if (LastOpenedCell == this)
             {
                 SetLastOpenedCell(null);
+            }
+        }
+
+        private void SetThisAsLastOpenedCell()
+        {
+            if (LastOpenedCell != this)
+            {
+                SetLastOpenedCell(this);
             }
         }
 
