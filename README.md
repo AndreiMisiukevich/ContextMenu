@@ -13,7 +13,7 @@
 ## SideActionBarCell
 This plugin provides opportunity to create custom context menu for every cell
 
-![Sample GIF](https://media.giphy.com/media/pP3bDaKCnu8z1okVNn/giphy.gif)
+![Sample GIF](https://github.com/AndreiMisiukevich/ContextMenu/blob/master/files/RightMenu.gif?raw=true)
 
 ## MoveToActionCell
 Also you can create move-to-action cells (for example Move to delete)
