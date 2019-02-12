@@ -22,6 +22,8 @@ namespace ContextMenu
             Orientation = ScrollOrientation.Horizontal;
             VerticalOptions = LayoutOptions.Fill;
             HorizontalOptions = LayoutOptions.Fill;
+            VerticalScrollBarVisibility = ScrollBarVisibility.Never;
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Never;
 
             Content = ViewStack = new StackLayout
             {
