@@ -107,7 +107,7 @@ namespace ContextMenu.Droid
 
 		#region Copied from XF sources
 
-		protected override void OnAttachedToWindow()
+		public override void OnAttachedToWindow()
 		{
 			base.OnAttachedToWindow();
 			_isAttachedNew = true;

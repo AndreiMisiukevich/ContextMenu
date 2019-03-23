@@ -75,6 +75,18 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f04000f
 			public static int design_snackbar_out = 2130968591;
 			
+			// aapt resource value: 0x7f040010
+			public static int EnterFromLeft = 2130968592;
+			
+			// aapt resource value: 0x7f040011
+			public static int EnterFromRight = 2130968593;
+			
+			// aapt resource value: 0x7f040012
+			public static int ExitToLeft = 2130968594;
+			
+			// aapt resource value: 0x7f040013
+			public static int ExitToRight = 2130968595;
+			
 			static Animation()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -1642,44 +1654,44 @@ namespace ContextMenu.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0c0056
-			public static int abc_background_cache_hint_selector_material_dark = 2131492950;
-			
-			// aapt resource value: 0x7f0c0057
-			public static int abc_background_cache_hint_selector_material_light = 2131492951;
-			
-			// aapt resource value: 0x7f0c0058
-			public static int abc_btn_colored_borderless_text_material = 2131492952;
-			
-			// aapt resource value: 0x7f0c0059
-			public static int abc_btn_colored_text_material = 2131492953;
-			
 			// aapt resource value: 0x7f0c005a
-			public static int abc_color_highlight_material = 2131492954;
+			public static int abc_background_cache_hint_selector_material_dark = 2131492954;
 			
 			// aapt resource value: 0x7f0c005b
-			public static int abc_hint_foreground_material_dark = 2131492955;
+			public static int abc_background_cache_hint_selector_material_light = 2131492955;
 			
 			// aapt resource value: 0x7f0c005c
-			public static int abc_hint_foreground_material_light = 2131492956;
+			public static int abc_btn_colored_borderless_text_material = 2131492956;
+			
+			// aapt resource value: 0x7f0c005d
+			public static int abc_btn_colored_text_material = 2131492957;
+			
+			// aapt resource value: 0x7f0c005e
+			public static int abc_color_highlight_material = 2131492958;
+			
+			// aapt resource value: 0x7f0c005f
+			public static int abc_hint_foreground_material_dark = 2131492959;
+			
+			// aapt resource value: 0x7f0c0060
+			public static int abc_hint_foreground_material_light = 2131492960;
 			
 			// aapt resource value: 0x7f0c0004
 			public static int abc_input_method_navigation_guard = 2131492868;
 			
-			// aapt resource value: 0x7f0c005d
-			public static int abc_primary_text_disable_only_material_dark = 2131492957;
-			
-			// aapt resource value: 0x7f0c005e
-			public static int abc_primary_text_disable_only_material_light = 2131492958;
-			
-			// aapt resource value: 0x7f0c005f
-			public static int abc_primary_text_material_dark = 2131492959;
-			
-			// aapt resource value: 0x7f0c0060
-			public static int abc_primary_text_material_light = 2131492960;
-			
 			// aapt resource value: 0x7f0c0061
-			public static int abc_search_url_text = 2131492961;
+			public static int abc_primary_text_disable_only_material_dark = 2131492961;
+			
+			// aapt resource value: 0x7f0c0062
+			public static int abc_primary_text_disable_only_material_light = 2131492962;
+			
+			// aapt resource value: 0x7f0c0063
+			public static int abc_primary_text_material_dark = 2131492963;
+			
+			// aapt resource value: 0x7f0c0064
+			public static int abc_primary_text_material_light = 2131492964;
+			
+			// aapt resource value: 0x7f0c0065
+			public static int abc_search_url_text = 2131492965;
 			
 			// aapt resource value: 0x7f0c0005
 			public static int abc_search_url_text_normal = 2131492869;
@@ -1690,29 +1702,29 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c0007
 			public static int abc_search_url_text_selected = 2131492871;
 			
-			// aapt resource value: 0x7f0c0062
-			public static int abc_secondary_text_material_dark = 2131492962;
-			
-			// aapt resource value: 0x7f0c0063
-			public static int abc_secondary_text_material_light = 2131492963;
-			
-			// aapt resource value: 0x7f0c0064
-			public static int abc_tint_btn_checkable = 2131492964;
-			
-			// aapt resource value: 0x7f0c0065
-			public static int abc_tint_default = 2131492965;
-			
 			// aapt resource value: 0x7f0c0066
-			public static int abc_tint_edittext = 2131492966;
+			public static int abc_secondary_text_material_dark = 2131492966;
 			
 			// aapt resource value: 0x7f0c0067
-			public static int abc_tint_seek_thumb = 2131492967;
+			public static int abc_secondary_text_material_light = 2131492967;
 			
 			// aapt resource value: 0x7f0c0068
-			public static int abc_tint_spinner = 2131492968;
+			public static int abc_tint_btn_checkable = 2131492968;
 			
 			// aapt resource value: 0x7f0c0069
-			public static int abc_tint_switch_track = 2131492969;
+			public static int abc_tint_default = 2131492969;
+			
+			// aapt resource value: 0x7f0c006a
+			public static int abc_tint_edittext = 2131492970;
+			
+			// aapt resource value: 0x7f0c006b
+			public static int abc_tint_seek_thumb = 2131492971;
+			
+			// aapt resource value: 0x7f0c006c
+			public static int abc_tint_spinner = 2131492972;
+			
+			// aapt resource value: 0x7f0c006d
+			public static int abc_tint_switch_track = 2131492973;
 			
 			// aapt resource value: 0x7f0c0008
 			public static int accent_material_dark = 2131492872;
@@ -1750,6 +1762,18 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c0013
 			public static int bright_foreground_material_light = 2131492883;
 			
+			// aapt resource value: 0x7f0c0054
+			public static int browser_actions_bg_grey = 2131492948;
+			
+			// aapt resource value: 0x7f0c0055
+			public static int browser_actions_divider_color = 2131492949;
+			
+			// aapt resource value: 0x7f0c0056
+			public static int browser_actions_text_color = 2131492950;
+			
+			// aapt resource value: 0x7f0c0057
+			public static int browser_actions_title_color = 2131492951;
+			
 			// aapt resource value: 0x7f0c0014
 			public static int button_material_dark = 2131492884;
 			
@@ -1777,8 +1801,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c0043
 			public static int design_default_color_primary_dark = 2131492931;
 			
-			// aapt resource value: 0x7f0c006a
-			public static int design_error = 2131492970;
+			// aapt resource value: 0x7f0c006e
+			public static int design_error = 2131492974;
 			
 			// aapt resource value: 0x7f0c0044
 			public static int design_fab_shadow_end_color = 2131492932;
@@ -1804,8 +1828,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c004b
 			public static int design_snackbar_background_color = 2131492939;
 			
-			// aapt resource value: 0x7f0c006b
-			public static int design_tint_password_toggle = 2131492971;
+			// aapt resource value: 0x7f0c006f
+			public static int design_tint_password_toggle = 2131492975;
 			
 			// aapt resource value: 0x7f0c0016
 			public static int dim_foreground_disabled_material_dark = 2131492886;
@@ -1873,71 +1897,71 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c002b
 			public static int material_grey_900 = 2131492907;
 			
-			// aapt resource value: 0x7f0c006c
-			public static int mtrl_bottom_nav_colored_item_tint = 2131492972;
+			// aapt resource value: 0x7f0c0070
+			public static int mtrl_bottom_nav_colored_item_tint = 2131492976;
 			
-			// aapt resource value: 0x7f0c006d
-			public static int mtrl_bottom_nav_item_tint = 2131492973;
+			// aapt resource value: 0x7f0c0071
+			public static int mtrl_bottom_nav_item_tint = 2131492977;
 			
 			// aapt resource value: 0x7f0c004c
 			public static int mtrl_btn_bg_color_disabled = 2131492940;
 			
-			// aapt resource value: 0x7f0c006e
-			public static int mtrl_btn_bg_color_selector = 2131492974;
+			// aapt resource value: 0x7f0c0072
+			public static int mtrl_btn_bg_color_selector = 2131492978;
 			
-			// aapt resource value: 0x7f0c006f
-			public static int mtrl_btn_ripple_color = 2131492975;
+			// aapt resource value: 0x7f0c0073
+			public static int mtrl_btn_ripple_color = 2131492979;
 			
-			// aapt resource value: 0x7f0c0070
-			public static int mtrl_btn_stroke_color_selector = 2131492976;
+			// aapt resource value: 0x7f0c0074
+			public static int mtrl_btn_stroke_color_selector = 2131492980;
 			
-			// aapt resource value: 0x7f0c0071
-			public static int mtrl_btn_text_btn_ripple_color = 2131492977;
+			// aapt resource value: 0x7f0c0075
+			public static int mtrl_btn_text_btn_ripple_color = 2131492981;
 			
 			// aapt resource value: 0x7f0c004d
 			public static int mtrl_btn_text_color_disabled = 2131492941;
 			
-			// aapt resource value: 0x7f0c0072
-			public static int mtrl_btn_text_color_selector = 2131492978;
+			// aapt resource value: 0x7f0c0076
+			public static int mtrl_btn_text_color_selector = 2131492982;
 			
 			// aapt resource value: 0x7f0c004e
 			public static int mtrl_btn_transparent_bg_color = 2131492942;
 			
-			// aapt resource value: 0x7f0c0073
-			public static int mtrl_chip_background_color = 2131492979;
-			
-			// aapt resource value: 0x7f0c0074
-			public static int mtrl_chip_close_icon_tint = 2131492980;
-			
-			// aapt resource value: 0x7f0c0075
-			public static int mtrl_chip_ripple_color = 2131492981;
-			
-			// aapt resource value: 0x7f0c0076
-			public static int mtrl_chip_text_color = 2131492982;
-			
 			// aapt resource value: 0x7f0c0077
-			public static int mtrl_fab_ripple_color = 2131492983;
+			public static int mtrl_chip_background_color = 2131492983;
+			
+			// aapt resource value: 0x7f0c0078
+			public static int mtrl_chip_close_icon_tint = 2131492984;
+			
+			// aapt resource value: 0x7f0c0079
+			public static int mtrl_chip_ripple_color = 2131492985;
+			
+			// aapt resource value: 0x7f0c007a
+			public static int mtrl_chip_text_color = 2131492986;
+			
+			// aapt resource value: 0x7f0c007b
+			public static int mtrl_fab_ripple_color = 2131492987;
 			
 			// aapt resource value: 0x7f0c004f
 			public static int mtrl_scrim_color = 2131492943;
 			
-			// aapt resource value: 0x7f0c0078
-			public static int mtrl_tabs_colored_ripple_color = 2131492984;
-			
-			// aapt resource value: 0x7f0c0079
-			public static int mtrl_tabs_icon_color_selector = 2131492985;
-			
-			// aapt resource value: 0x7f0c007a
-			public static int mtrl_tabs_icon_color_selector_colored = 2131492986;
-			
-			// aapt resource value: 0x7f0c007b
-			public static int mtrl_tabs_legacy_text_color_selector = 2131492987;
-			
 			// aapt resource value: 0x7f0c007c
-			public static int mtrl_tabs_ripple_color = 2131492988;
+			public static int mtrl_tabs_colored_ripple_color = 2131492988;
 			
 			// aapt resource value: 0x7f0c007d
-			public static int mtrl_text_btn_text_color_selector = 2131492989;
+			public static int mtrl_tabs_icon_color_selector = 2131492989;
+			
+			// aapt resource value: 0x7f0c007e
+			public static int mtrl_tabs_icon_color_selector_colored = 2131492990;
+			
+			// aapt resource value: 0x7f0c007f
+			public static int mtrl_tabs_legacy_text_color_selector = 2131492991;
+			
+			// aapt resource value: 0x7f0c0080
+			public static int mtrl_tabs_ripple_color = 2131492992;
+			
+			// aapt resource value: 0x7f0c0081
+			public static int mtrl_text_btn_text_color_selector = 2131492993;
 			
 			// aapt resource value: 0x7f0c0050
 			public static int mtrl_textinput_default_box_stroke_color = 2131492944;
@@ -1951,11 +1975,11 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c0053
 			public static int mtrl_textinput_hovered_box_stroke_color = 2131492947;
 			
-			// aapt resource value: 0x7f0c0054
-			public static int notification_action_color_filter = 2131492948;
+			// aapt resource value: 0x7f0c0058
+			public static int notification_action_color_filter = 2131492952;
 			
-			// aapt resource value: 0x7f0c0055
-			public static int notification_icon_bg_color = 2131492949;
+			// aapt resource value: 0x7f0c0059
+			public static int notification_icon_bg_color = 2131492953;
 			
 			// aapt resource value: 0x7f0c0040
 			public static int notification_material_background_media_default_color = 2131492928;
@@ -2008,11 +2032,11 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0c003b
 			public static int switch_thumb_disabled_material_light = 2131492923;
 			
-			// aapt resource value: 0x7f0c007e
-			public static int switch_thumb_material_dark = 2131492990;
+			// aapt resource value: 0x7f0c0082
+			public static int switch_thumb_material_dark = 2131492994;
 			
-			// aapt resource value: 0x7f0c007f
-			public static int switch_thumb_material_light = 2131492991;
+			// aapt resource value: 0x7f0c0083
+			public static int switch_thumb_material_light = 2131492995;
 			
 			// aapt resource value: 0x7f0c003c
 			public static int switch_thumb_normal_material_dark = 2131492924;
@@ -2264,6 +2288,12 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f070012
 			public static int abc_text_size_title_material_toolbar = 2131165202;
 			
+			// aapt resource value: 0x7f0700cb
+			public static int browser_actions_context_menu_max_width = 2131165387;
+			
+			// aapt resource value: 0x7f0700cc
+			public static int browser_actions_context_menu_min_padding = 2131165388;
+			
 			// aapt resource value: 0x7f07000c
 			public static int cardview_compat_inset_shadow = 2131165196;
 			
@@ -2273,26 +2303,26 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f07000e
 			public static int cardview_default_radius = 2131165198;
 			
-			// aapt resource value: 0x7f0700cf
-			public static int compat_button_inset_horizontal_material = 2131165391;
-			
-			// aapt resource value: 0x7f0700d0
-			public static int compat_button_inset_vertical_material = 2131165392;
-			
 			// aapt resource value: 0x7f0700d1
-			public static int compat_button_padding_horizontal_material = 2131165393;
+			public static int compat_button_inset_horizontal_material = 2131165393;
 			
 			// aapt resource value: 0x7f0700d2
-			public static int compat_button_padding_vertical_material = 2131165394;
+			public static int compat_button_inset_vertical_material = 2131165394;
 			
 			// aapt resource value: 0x7f0700d3
-			public static int compat_control_corner_material = 2131165395;
+			public static int compat_button_padding_horizontal_material = 2131165395;
 			
 			// aapt resource value: 0x7f0700d4
-			public static int compat_notification_large_icon_max_height = 2131165396;
+			public static int compat_button_padding_vertical_material = 2131165396;
 			
 			// aapt resource value: 0x7f0700d5
-			public static int compat_notification_large_icon_max_width = 2131165397;
+			public static int compat_control_corner_material = 2131165397;
+			
+			// aapt resource value: 0x7f0700d6
+			public static int compat_notification_large_icon_max_height = 2131165398;
+			
+			// aapt resource value: 0x7f0700d7
+			public static int compat_notification_large_icon_max_width = 2131165399;
 			
 			// aapt resource value: 0x7f070077
 			public static int design_appbar_elevation = 2131165303;
@@ -2633,50 +2663,50 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f0700ca
 			public static int mtrl_toolbar_default_height = 2131165386;
 			
-			// aapt resource value: 0x7f0700d6
-			public static int notification_action_icon_size = 2131165398;
-			
-			// aapt resource value: 0x7f0700d7
-			public static int notification_action_text_size = 2131165399;
-			
 			// aapt resource value: 0x7f0700d8
-			public static int notification_big_circle_margin = 2131165400;
-			
-			// aapt resource value: 0x7f0700cc
-			public static int notification_content_margin_start = 2131165388;
+			public static int notification_action_icon_size = 2131165400;
 			
 			// aapt resource value: 0x7f0700d9
-			public static int notification_large_icon_height = 2131165401;
+			public static int notification_action_text_size = 2131165401;
 			
 			// aapt resource value: 0x7f0700da
-			public static int notification_large_icon_width = 2131165402;
-			
-			// aapt resource value: 0x7f0700cd
-			public static int notification_main_column_padding_top = 2131165389;
+			public static int notification_big_circle_margin = 2131165402;
 			
 			// aapt resource value: 0x7f0700ce
-			public static int notification_media_narrow_margin = 2131165390;
+			public static int notification_content_margin_start = 2131165390;
 			
 			// aapt resource value: 0x7f0700db
-			public static int notification_right_icon_size = 2131165403;
-			
-			// aapt resource value: 0x7f0700cb
-			public static int notification_right_side_padding_top = 2131165387;
+			public static int notification_large_icon_height = 2131165403;
 			
 			// aapt resource value: 0x7f0700dc
-			public static int notification_small_icon_background_padding = 2131165404;
+			public static int notification_large_icon_width = 2131165404;
+			
+			// aapt resource value: 0x7f0700cf
+			public static int notification_main_column_padding_top = 2131165391;
+			
+			// aapt resource value: 0x7f0700d0
+			public static int notification_media_narrow_margin = 2131165392;
 			
 			// aapt resource value: 0x7f0700dd
-			public static int notification_small_icon_size_as_large = 2131165405;
+			public static int notification_right_icon_size = 2131165405;
+			
+			// aapt resource value: 0x7f0700cd
+			public static int notification_right_side_padding_top = 2131165389;
 			
 			// aapt resource value: 0x7f0700de
-			public static int notification_subtext_size = 2131165406;
+			public static int notification_small_icon_background_padding = 2131165406;
 			
 			// aapt resource value: 0x7f0700df
-			public static int notification_top_pad = 2131165407;
+			public static int notification_small_icon_size_as_large = 2131165407;
 			
 			// aapt resource value: 0x7f0700e0
-			public static int notification_top_pad_large_text = 2131165408;
+			public static int notification_subtext_size = 2131165408;
+			
+			// aapt resource value: 0x7f0700e1
+			public static int notification_top_pad = 2131165409;
+			
+			// aapt resource value: 0x7f0700e2
+			public static int notification_top_pad_large_text = 2131165410;
 			
 			// aapt resource value: 0x7f07006b
 			public static int subtitle_corner_radius = 2131165291;
@@ -3703,8 +3733,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08003e
 			public static int SYM = 2131230782;
 			
-			// aapt resource value: 0x7f0800db
-			public static int action0 = 2131230939;
+			// aapt resource value: 0x7f0800e4
+			public static int action0 = 2131230948;
 			
 			// aapt resource value: 0x7f08008d
 			public static int action_bar = 2131230861;
@@ -3727,17 +3757,17 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080069
 			public static int action_bar_title = 2131230825;
 			
-			// aapt resource value: 0x7f0800d8
-			public static int action_container = 2131230936;
+			// aapt resource value: 0x7f0800e1
+			public static int action_container = 2131230945;
 			
 			// aapt resource value: 0x7f08008e
 			public static int action_context_bar = 2131230862;
 			
-			// aapt resource value: 0x7f0800df
-			public static int action_divider = 2131230943;
+			// aapt resource value: 0x7f0800e8
+			public static int action_divider = 2131230952;
 			
-			// aapt resource value: 0x7f0800d9
-			public static int action_image = 2131230937;
+			// aapt resource value: 0x7f0800e2
+			public static int action_image = 2131230946;
 			
 			// aapt resource value: 0x7f080003
 			public static int action_menu_divider = 2131230723;
@@ -3754,11 +3784,11 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08006b
 			public static int action_mode_close_button = 2131230827;
 			
-			// aapt resource value: 0x7f0800da
-			public static int action_text = 2131230938;
+			// aapt resource value: 0x7f0800e3
+			public static int action_text = 2131230947;
 			
-			// aapt resource value: 0x7f0800e8
-			public static int actions = 2131230952;
+			// aapt resource value: 0x7f0800f1
+			public static int actions = 2131230961;
 			
 			// aapt resource value: 0x7f08006c
 			public static int activity_chooser_view_content = 2131230828;
@@ -3790,11 +3820,32 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080044
 			public static int bottom = 2131230788;
 			
+			// aapt resource value: 0x7f08009d
+			public static int bottomtab_navarea = 2131230877;
+			
+			// aapt resource value: 0x7f08009e
+			public static int bottomtab_tabbar = 2131230878;
+			
+			// aapt resource value: 0x7f0800a0
+			public static int browser_actions_header_text = 2131230880;
+			
+			// aapt resource value: 0x7f0800a2
+			public static int browser_actions_menu_item_icon = 2131230882;
+			
+			// aapt resource value: 0x7f0800a3
+			public static int browser_actions_menu_item_text = 2131230883;
+			
+			// aapt resource value: 0x7f0800a1
+			public static int browser_actions_menu_items = 2131230881;
+			
+			// aapt resource value: 0x7f08009f
+			public static int browser_actions_menu_view = 2131230879;
+			
 			// aapt resource value: 0x7f080072
 			public static int buttonPanel = 2131230834;
 			
-			// aapt resource value: 0x7f0800dc
-			public static int cancel_action = 2131230940;
+			// aapt resource value: 0x7f0800e5
+			public static int cancel_action = 2131230949;
 			
 			// aapt resource value: 0x7f08004c
 			public static int center = 2131230796;
@@ -3808,8 +3859,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080086
 			public static int checkbox = 2131230854;
 			
-			// aapt resource value: 0x7f0800e4
-			public static int chronometer = 2131230948;
+			// aapt resource value: 0x7f0800ed
+			public static int chronometer = 2131230957;
 			
 			// aapt resource value: 0x7f080061
 			public static int clip_horizontal = 2131230817;
@@ -3820,8 +3871,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080040
 			public static int collapseActionView = 2131230784;
 			
-			// aapt resource value: 0x7f08009f
-			public static int container = 2131230879;
+			// aapt resource value: 0x7f0800a6
+			public static int container = 2131230886;
 			
 			// aapt resource value: 0x7f080082
 			public static int content = 2131230850;
@@ -3829,8 +3880,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080075
 			public static int contentPanel = 2131230837;
 			
-			// aapt resource value: 0x7f0800a0
-			public static int coordinator = 2131230880;
+			// aapt resource value: 0x7f0800a7
+			public static int coordinator = 2131230887;
 			
 			// aapt resource value: 0x7f08007c
 			public static int custom = 2131230844;
@@ -3844,20 +3895,20 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08006f
 			public static int default_activity_button = 2131230831;
 			
-			// aapt resource value: 0x7f0800a2
-			public static int design_bottom_sheet = 2131230882;
+			// aapt resource value: 0x7f0800a9
+			public static int design_bottom_sheet = 2131230889;
 			
-			// aapt resource value: 0x7f0800a7
-			public static int design_menu_item_action_area = 2131230887;
+			// aapt resource value: 0x7f0800ae
+			public static int design_menu_item_action_area = 2131230894;
 			
-			// aapt resource value: 0x7f0800a6
-			public static int design_menu_item_action_area_stub = 2131230886;
+			// aapt resource value: 0x7f0800ad
+			public static int design_menu_item_action_area_stub = 2131230893;
 			
-			// aapt resource value: 0x7f0800a5
-			public static int design_menu_item_text = 2131230885;
+			// aapt resource value: 0x7f0800ac
+			public static int design_menu_item_text = 2131230892;
 			
-			// aapt resource value: 0x7f0800a4
-			public static int design_navigation_view = 2131230884;
+			// aapt resource value: 0x7f0800ab
+			public static int design_navigation_view = 2131230891;
 			
 			// aapt resource value: 0x7f080027
 			public static int disableHome = 2131230759;
@@ -3868,8 +3919,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080037
 			public static int end = 2131230775;
 			
-			// aapt resource value: 0x7f0800ea
-			public static int end_padder = 2131230954;
+			// aapt resource value: 0x7f0800f3
+			public static int end_padder = 2131230963;
 			
 			// aapt resource value: 0x7f080046
 			public static int enterAlways = 2131230790;
@@ -3901,6 +3952,12 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08005c
 			public static int @fixed = 2131230812;
 			
+			// aapt resource value: 0x7f0800b0
+			public static int flyoutcontent_appbar = 2131230896;
+			
+			// aapt resource value: 0x7f0800b1
+			public static int flyoutcontent_recycler = 2131230897;
+			
 			// aapt resource value: 0x7f080067
 			public static int forever = 2131230823;
 			
@@ -3919,8 +3976,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080071
 			public static int icon = 2131230833;
 			
-			// aapt resource value: 0x7f0800e9
-			public static int icon_group = 2131230953;
+			// aapt resource value: 0x7f0800f2
+			public static int icon_group = 2131230962;
 			
 			// aapt resource value: 0x7f080041
 			public static int ifRoom = 2131230785;
@@ -3928,8 +3985,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08006e
 			public static int image = 2131230830;
 			
-			// aapt resource value: 0x7f0800e5
-			public static int info = 2131230949;
+			// aapt resource value: 0x7f0800ee
+			public static int info = 2131230958;
 			
 			// aapt resource value: 0x7f080068
 			public static int italic = 2131230824;
@@ -3940,8 +3997,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08004e
 			public static int labeled = 2131230798;
 			
-			// aapt resource value: 0x7f08009e
-			public static int largeLabel = 2131230878;
+			// aapt resource value: 0x7f0800a5
+			public static int largeLabel = 2131230885;
 			
 			// aapt resource value: 0x7f080054
 			public static int left = 2131230804;
@@ -3958,11 +4015,23 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080070
 			public static int list_item = 2131230832;
 			
-			// aapt resource value: 0x7f0800ec
-			public static int masked = 2131230956;
+			// aapt resource value: 0x7f0800f4
+			public static int main_appbar = 2131230964;
 			
-			// aapt resource value: 0x7f0800de
-			public static int media_actions = 2131230942;
+			// aapt resource value: 0x7f0800f7
+			public static int main_scrollview = 2131230967;
+			
+			// aapt resource value: 0x7f0800f6
+			public static int main_tablayout = 2131230966;
+			
+			// aapt resource value: 0x7f0800f5
+			public static int main_toolbar = 2131230965;
+			
+			// aapt resource value: 0x7f0800fc
+			public static int masked = 2131230972;
+			
+			// aapt resource value: 0x7f0800e7
+			public static int media_actions = 2131230951;
 			
 			// aapt resource value: 0x7f08009c
 			public static int message = 2131230876;
@@ -3973,143 +4042,143 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080059
 			public static int mini = 2131230809;
 			
-			// aapt resource value: 0x7f0800c5
-			public static int mr_art = 2131230917;
-			
-			// aapt resource value: 0x7f0800b6
-			public static int mr_cast_checkbox = 2131230902;
-			
-			// aapt resource value: 0x7f0800af
-			public static int mr_cast_close_button = 2131230895;
-			
-			// aapt resource value: 0x7f0800aa
-			public static int mr_cast_group_icon = 2131230890;
-			
-			// aapt resource value: 0x7f0800ab
-			public static int mr_cast_group_name = 2131230891;
-			
-			// aapt resource value: 0x7f0800a9
-			public static int mr_cast_list = 2131230889;
-			
-			// aapt resource value: 0x7f0800ae
-			public static int mr_cast_meta = 2131230894;
-			
-			// aapt resource value: 0x7f0800b0
-			public static int mr_cast_meta_art = 2131230896;
-			
-			// aapt resource value: 0x7f0800b2
-			public static int mr_cast_meta_subtitle = 2131230898;
-			
-			// aapt resource value: 0x7f0800b1
-			public static int mr_cast_meta_title = 2131230897;
-			
-			// aapt resource value: 0x7f0800b4
-			public static int mr_cast_route_icon = 2131230900;
-			
-			// aapt resource value: 0x7f0800b5
-			public static int mr_cast_route_name = 2131230901;
-			
-			// aapt resource value: 0x7f0800b3
-			public static int mr_cast_stop_button = 2131230899;
-			
-			// aapt resource value: 0x7f0800b7
-			public static int mr_cast_volume_layout = 2131230903;
-			
-			// aapt resource value: 0x7f0800b8
-			public static int mr_cast_volume_slider = 2131230904;
-			
-			// aapt resource value: 0x7f0800ba
-			public static int mr_chooser_list = 2131230906;
-			
-			// aapt resource value: 0x7f0800bd
-			public static int mr_chooser_route_desc = 2131230909;
-			
-			// aapt resource value: 0x7f0800bb
-			public static int mr_chooser_route_icon = 2131230907;
-			
-			// aapt resource value: 0x7f0800bc
-			public static int mr_chooser_route_name = 2131230908;
-			
-			// aapt resource value: 0x7f0800b9
-			public static int mr_chooser_title = 2131230905;
-			
-			// aapt resource value: 0x7f0800c2
-			public static int mr_close = 2131230914;
-			
-			// aapt resource value: 0x7f0800c8
-			public static int mr_control_divider = 2131230920;
-			
-			// aapt resource value: 0x7f0800d3
-			public static int mr_control_playback_ctrl = 2131230931;
-			
-			// aapt resource value: 0x7f0800d6
-			public static int mr_control_subtitle = 2131230934;
-			
-			// aapt resource value: 0x7f0800d5
-			public static int mr_control_title = 2131230933;
-			
-			// aapt resource value: 0x7f0800d4
-			public static int mr_control_title_container = 2131230932;
-			
-			// aapt resource value: 0x7f0800c3
-			public static int mr_custom_control = 2131230915;
-			
-			// aapt resource value: 0x7f0800c4
-			public static int mr_default_control = 2131230916;
+			// aapt resource value: 0x7f0800ce
+			public static int mr_art = 2131230926;
 			
 			// aapt resource value: 0x7f0800bf
-			public static int mr_dialog_area = 2131230911;
+			public static int mr_cast_checkbox = 2131230911;
 			
-			// aapt resource value: 0x7f0800ce
-			public static int mr_dialog_header_name = 2131230926;
+			// aapt resource value: 0x7f0800b8
+			public static int mr_cast_close_button = 2131230904;
+			
+			// aapt resource value: 0x7f0800b3
+			public static int mr_cast_group_icon = 2131230899;
+			
+			// aapt resource value: 0x7f0800b4
+			public static int mr_cast_group_name = 2131230900;
+			
+			// aapt resource value: 0x7f0800b2
+			public static int mr_cast_list = 2131230898;
+			
+			// aapt resource value: 0x7f0800b7
+			public static int mr_cast_meta = 2131230903;
+			
+			// aapt resource value: 0x7f0800b9
+			public static int mr_cast_meta_art = 2131230905;
+			
+			// aapt resource value: 0x7f0800bb
+			public static int mr_cast_meta_subtitle = 2131230907;
+			
+			// aapt resource value: 0x7f0800ba
+			public static int mr_cast_meta_title = 2131230906;
+			
+			// aapt resource value: 0x7f0800bd
+			public static int mr_cast_route_icon = 2131230909;
 			
 			// aapt resource value: 0x7f0800be
-			public static int mr_expandable_area = 2131230910;
+			public static int mr_cast_route_name = 2131230910;
 			
-			// aapt resource value: 0x7f0800d7
-			public static int mr_group_expand_collapse = 2131230935;
-			
-			// aapt resource value: 0x7f0800ac
-			public static int mr_group_volume_route_name = 2131230892;
-			
-			// aapt resource value: 0x7f0800ad
-			public static int mr_group_volume_slider = 2131230893;
-			
-			// aapt resource value: 0x7f0800c6
-			public static int mr_media_main_control = 2131230918;
-			
-			// aapt resource value: 0x7f0800c1
-			public static int mr_name = 2131230913;
-			
-			// aapt resource value: 0x7f0800cf
-			public static int mr_picker_close_button = 2131230927;
-			
-			// aapt resource value: 0x7f0800d0
-			public static int mr_picker_list = 2131230928;
-			
-			// aapt resource value: 0x7f0800d1
-			public static int mr_picker_route_icon = 2131230929;
-			
-			// aapt resource value: 0x7f0800d2
-			public static int mr_picker_route_name = 2131230930;
-			
-			// aapt resource value: 0x7f0800c7
-			public static int mr_playback_control = 2131230919;
+			// aapt resource value: 0x7f0800bc
+			public static int mr_cast_stop_button = 2131230908;
 			
 			// aapt resource value: 0x7f0800c0
-			public static int mr_title_bar = 2131230912;
+			public static int mr_cast_volume_layout = 2131230912;
 			
-			// aapt resource value: 0x7f0800c9
-			public static int mr_volume_control = 2131230921;
+			// aapt resource value: 0x7f0800c1
+			public static int mr_cast_volume_slider = 2131230913;
 			
-			// aapt resource value: 0x7f0800ca
-			public static int mr_volume_group_list = 2131230922;
+			// aapt resource value: 0x7f0800c3
+			public static int mr_chooser_list = 2131230915;
+			
+			// aapt resource value: 0x7f0800c6
+			public static int mr_chooser_route_desc = 2131230918;
+			
+			// aapt resource value: 0x7f0800c4
+			public static int mr_chooser_route_icon = 2131230916;
+			
+			// aapt resource value: 0x7f0800c5
+			public static int mr_chooser_route_name = 2131230917;
+			
+			// aapt resource value: 0x7f0800c2
+			public static int mr_chooser_title = 2131230914;
+			
+			// aapt resource value: 0x7f0800cb
+			public static int mr_close = 2131230923;
+			
+			// aapt resource value: 0x7f0800d1
+			public static int mr_control_divider = 2131230929;
+			
+			// aapt resource value: 0x7f0800dc
+			public static int mr_control_playback_ctrl = 2131230940;
+			
+			// aapt resource value: 0x7f0800df
+			public static int mr_control_subtitle = 2131230943;
+			
+			// aapt resource value: 0x7f0800de
+			public static int mr_control_title = 2131230942;
+			
+			// aapt resource value: 0x7f0800dd
+			public static int mr_control_title_container = 2131230941;
 			
 			// aapt resource value: 0x7f0800cc
-			public static int mr_volume_item_icon = 2131230924;
+			public static int mr_custom_control = 2131230924;
 			
 			// aapt resource value: 0x7f0800cd
-			public static int mr_volume_slider = 2131230925;
+			public static int mr_default_control = 2131230925;
+			
+			// aapt resource value: 0x7f0800c8
+			public static int mr_dialog_area = 2131230920;
+			
+			// aapt resource value: 0x7f0800d7
+			public static int mr_dialog_header_name = 2131230935;
+			
+			// aapt resource value: 0x7f0800c7
+			public static int mr_expandable_area = 2131230919;
+			
+			// aapt resource value: 0x7f0800e0
+			public static int mr_group_expand_collapse = 2131230944;
+			
+			// aapt resource value: 0x7f0800b5
+			public static int mr_group_volume_route_name = 2131230901;
+			
+			// aapt resource value: 0x7f0800b6
+			public static int mr_group_volume_slider = 2131230902;
+			
+			// aapt resource value: 0x7f0800cf
+			public static int mr_media_main_control = 2131230927;
+			
+			// aapt resource value: 0x7f0800ca
+			public static int mr_name = 2131230922;
+			
+			// aapt resource value: 0x7f0800d8
+			public static int mr_picker_close_button = 2131230936;
+			
+			// aapt resource value: 0x7f0800d9
+			public static int mr_picker_list = 2131230937;
+			
+			// aapt resource value: 0x7f0800da
+			public static int mr_picker_route_icon = 2131230938;
+			
+			// aapt resource value: 0x7f0800db
+			public static int mr_picker_route_name = 2131230939;
+			
+			// aapt resource value: 0x7f0800d0
+			public static int mr_playback_control = 2131230928;
+			
+			// aapt resource value: 0x7f0800c9
+			public static int mr_title_bar = 2131230921;
+			
+			// aapt resource value: 0x7f0800d2
+			public static int mr_volume_control = 2131230930;
+			
+			// aapt resource value: 0x7f0800d3
+			public static int mr_volume_group_list = 2131230931;
+			
+			// aapt resource value: 0x7f0800d5
+			public static int mr_volume_item_icon = 2131230933;
+			
+			// aapt resource value: 0x7f0800d6
+			public static int mr_volume_slider = 2131230934;
 			
 			// aapt resource value: 0x7f080014
 			public static int mtrl_child_content_container = 2131230740;
@@ -4120,8 +4189,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08002f
 			public static int multiply = 2131230767;
 			
-			// aapt resource value: 0x7f0800a3
-			public static int navigation_header_container = 2131230883;
+			// aapt resource value: 0x7f0800aa
+			public static int navigation_header_container = 2131230890;
 			
 			// aapt resource value: 0x7f080042
 			public static int never = 2131230786;
@@ -4132,14 +4201,14 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080025
 			public static int normal = 2131230757;
 			
-			// aapt resource value: 0x7f0800e7
-			public static int notification_background = 2131230951;
+			// aapt resource value: 0x7f0800f0
+			public static int notification_background = 2131230960;
 			
-			// aapt resource value: 0x7f0800e1
-			public static int notification_main_column = 2131230945;
+			// aapt resource value: 0x7f0800ea
+			public static int notification_main_column = 2131230954;
 			
-			// aapt resource value: 0x7f0800e0
-			public static int notification_main_column_container = 2131230944;
+			// aapt resource value: 0x7f0800e9
+			public static int notification_main_column_container = 2131230953;
 			
 			// aapt resource value: 0x7f080060
 			public static int outline = 2131230816;
@@ -4168,11 +4237,11 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080055
 			public static int right = 2131230805;
 			
-			// aapt resource value: 0x7f0800e6
-			public static int right_icon = 2131230950;
+			// aapt resource value: 0x7f0800ef
+			public static int right_icon = 2131230959;
 			
-			// aapt resource value: 0x7f0800e2
-			public static int right_side = 2131230946;
+			// aapt resource value: 0x7f0800eb
+			public static int right_side = 2131230955;
 			
 			// aapt resource value: 0x7f08000c
 			public static int save_image_matrix = 2131230732;
@@ -4237,6 +4306,15 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08004f
 			public static int selected = 2131230799;
 			
+			// aapt resource value: 0x7f0800f8
+			public static int shellcontent_appbar = 2131230968;
+			
+			// aapt resource value: 0x7f0800fa
+			public static int shellcontent_scrollview = 2131230970;
+			
+			// aapt resource value: 0x7f0800f9
+			public static int shellcontent_toolbar = 2131230969;
+			
 			// aapt resource value: 0x7f080083
 			public static int shortcut = 2131230851;
 			
@@ -4249,8 +4327,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08002c
 			public static int showTitle = 2131230764;
 			
-			// aapt resource value: 0x7f08009d
-			public static int smallLabel = 2131230877;
+			// aapt resource value: 0x7f0800a4
+			public static int smallLabel = 2131230884;
 			
 			// aapt resource value: 0x7f080016
 			public static int snackbar_action = 2131230742;
@@ -4282,8 +4360,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f080056
 			public static int start = 2131230806;
 			
-			// aapt resource value: 0x7f0800dd
-			public static int status_bar_latest_event_content = 2131230941;
+			// aapt resource value: 0x7f0800e6
+			public static int status_bar_latest_event_content = 2131230950;
 			
 			// aapt resource value: 0x7f08005b
 			public static int stretch = 2131230811;
@@ -4321,8 +4399,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08005a
 			public static int textStart = 2131230810;
 			
-			// aapt resource value: 0x7f0800a8
-			public static int text_input_password_toggle = 2131230888;
+			// aapt resource value: 0x7f0800af
+			public static int text_input_password_toggle = 2131230895;
 			
 			// aapt resource value: 0x7f080018
 			public static int textinput_counter = 2131230744;
@@ -4333,8 +4411,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08001a
 			public static int textinput_helper_text = 2131230746;
 			
-			// aapt resource value: 0x7f0800e3
-			public static int time = 2131230947;
+			// aapt resource value: 0x7f0800ec
+			public static int time = 2131230956;
 			
 			// aapt resource value: 0x7f080023
 			public static int title = 2131230755;
@@ -4351,8 +4429,8 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08007d
 			public static int topPanel = 2131230845;
 			
-			// aapt resource value: 0x7f0800a1
-			public static int touch_outside = 2131230881;
+			// aapt resource value: 0x7f0800a8
+			public static int touch_outside = 2131230888;
 			
 			// aapt resource value: 0x7f08000f
 			public static int transition_current_scene = 2131230735;
@@ -4384,11 +4462,11 @@ namespace ContextMenu.Droid
 			// aapt resource value: 0x7f08001b
 			public static int view_offset_helper = 2131230747;
 			
-			// aapt resource value: 0x7f0800eb
-			public static int visible = 2131230955;
+			// aapt resource value: 0x7f0800fb
+			public static int visible = 2131230971;
 			
-			// aapt resource value: 0x7f0800cb
-			public static int volume_item_container = 2131230923;
+			// aapt resource value: 0x7f0800d4
+			public static int volume_item_container = 2131230932;
 			
 			// aapt resource value: 0x7f080043
 			public static int withText = 2131230787;
@@ -4595,151 +4673,169 @@ namespace ContextMenu.Droid
 			public static int abc_tooltip = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public static int design_bottom_navigation_item = 2130903068;
+			public static int BottomTabLayout = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public static int design_bottom_sheet_dialog = 2130903069;
+			public static int browser_actions_context_menu_page = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public static int design_layout_snackbar = 2130903070;
+			public static int browser_actions_context_menu_row = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public static int design_layout_snackbar_include = 2130903071;
+			public static int design_bottom_navigation_item = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public static int design_layout_tab_icon = 2130903072;
+			public static int design_bottom_sheet_dialog = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public static int design_layout_tab_text = 2130903073;
+			public static int design_layout_snackbar = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public static int design_menu_item_action_area = 2130903074;
+			public static int design_layout_snackbar_include = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public static int design_navigation_item = 2130903075;
+			public static int design_layout_tab_icon = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public static int design_navigation_item_header = 2130903076;
+			public static int design_layout_tab_text = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public static int design_navigation_item_separator = 2130903077;
+			public static int design_menu_item_action_area = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public static int design_navigation_item_subheader = 2130903078;
+			public static int design_navigation_item = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public static int design_navigation_menu = 2130903079;
+			public static int design_navigation_item_header = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public static int design_navigation_menu_item = 2130903080;
+			public static int design_navigation_item_separator = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public static int design_text_input_password_icon = 2130903081;
+			public static int design_navigation_item_subheader = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public static int mr_cast_dialog = 2130903082;
+			public static int design_navigation_menu = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public static int mr_cast_group_item = 2130903083;
+			public static int design_navigation_menu_item = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public static int mr_cast_group_volume_item = 2130903084;
+			public static int design_text_input_password_icon = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public static int mr_cast_media_metadata = 2130903085;
+			public static int FlyoutContent = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public static int mr_cast_route_item = 2130903086;
+			public static int mr_cast_dialog = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public static int mr_chooser_dialog = 2130903087;
+			public static int mr_cast_group_item = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public static int mr_chooser_list_item = 2130903088;
+			public static int mr_cast_group_volume_item = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public static int mr_controller_material_dialog_b = 2130903089;
+			public static int mr_cast_media_metadata = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public static int mr_controller_volume_item = 2130903090;
+			public static int mr_cast_route_item = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public static int mr_dialog_header_item = 2130903091;
+			public static int mr_chooser_dialog = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public static int mr_picker_dialog = 2130903092;
+			public static int mr_chooser_list_item = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public static int mr_picker_route_item = 2130903093;
+			public static int mr_controller_material_dialog_b = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public static int mr_playback_control = 2130903094;
+			public static int mr_controller_volume_item = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public static int mr_volume_control = 2130903095;
+			public static int mr_dialog_header_item = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public static int mtrl_layout_snackbar = 2130903096;
+			public static int mr_picker_dialog = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public static int mtrl_layout_snackbar_include = 2130903097;
+			public static int mr_picker_route_item = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public static int notification_action = 2130903098;
+			public static int mr_playback_control = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public static int notification_action_tombstone = 2130903099;
+			public static int mr_volume_control = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public static int notification_media_action = 2130903100;
+			public static int mtrl_layout_snackbar = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public static int notification_media_cancel_action = 2130903101;
+			public static int mtrl_layout_snackbar_include = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public static int notification_template_big_media = 2130903102;
+			public static int notification_action = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public static int notification_template_big_media_custom = 2130903103;
+			public static int notification_action_tombstone = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public static int notification_template_big_media_narrow = 2130903104;
+			public static int notification_media_action = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public static int notification_template_big_media_narrow_custom = 2130903105;
+			public static int notification_media_cancel_action = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public static int notification_template_custom_big = 2130903106;
+			public static int notification_template_big_media = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public static int notification_template_icon_group = 2130903107;
+			public static int notification_template_big_media_custom = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public static int notification_template_lines_media = 2130903108;
+			public static int notification_template_big_media_narrow = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public static int notification_template_media = 2130903109;
+			public static int notification_template_big_media_narrow_custom = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public static int notification_template_media_custom = 2130903110;
+			public static int notification_template_custom_big = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public static int notification_template_part_chronometer = 2130903111;
+			public static int notification_template_icon_group = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public static int notification_template_part_time = 2130903112;
+			public static int notification_template_lines_media = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public static int select_dialog_item_material = 2130903113;
+			public static int notification_template_media = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public static int select_dialog_multichoice_material = 2130903114;
+			public static int notification_template_media_custom = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public static int select_dialog_singlechoice_material = 2130903115;
+			public static int notification_template_part_chronometer = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public static int support_simple_spinner_dropdown_item = 2130903116;
+			public static int notification_template_part_time = 2130903116;
+			
+			// aapt resource value: 0x7f03004d
+			public static int RootLayout = 2130903117;
+			
+			// aapt resource value: 0x7f03004e
+			public static int select_dialog_item_material = 2130903118;
+			
+			// aapt resource value: 0x7f03004f
+			public static int select_dialog_multichoice_material = 2130903119;
+			
+			// aapt resource value: 0x7f030050
+			public static int select_dialog_singlechoice_material = 2130903120;
+			
+			// aapt resource value: 0x7f030051
+			public static int ShellContent = 2130903121;
+			
+			// aapt resource value: 0x7f030052
+			public static int support_simple_spinner_dropdown_item = 2130903122;
 			
 			static Layout()
 			{
