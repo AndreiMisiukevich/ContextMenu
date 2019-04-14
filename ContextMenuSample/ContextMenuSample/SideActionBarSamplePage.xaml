@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:ContextMenuSample"
     x:Class="ContextMenuSample.SideActionBarSamplePage">
     <ListView x:Name="SampleList"
-              RowHeight="80"
+              RowHeight="100"
               BackgroundColor="Black"
               SeparatorVisibility="None">
         <ListView.ItemTemplate>
@@ -26,9 +26,9 @@
                                     HorizontalOptions="End"
                                     VerticalOptions="CenterAndExpand"
                                     FontSize="12"
-                                    WidthRequest="50"
-                                    HeightRequest="50"
-                                    CornerRadius="25"
+                                    WidthRequest="60"
+                                    HeightRequest="60"
+                                    CornerRadius="30"
                                     BackgroundColor="Black"
                                     Margin="10, 0"
                                     Text="open" 
@@ -37,32 +37,41 @@
                     </context:SideActionBarCell.Content>
                     <context:SideActionBarCell.ContextTemplate>
                         <DataTemplate>
-                            <StackLayout Spacing="0"
+                            <StackLayout Spacing="10"
+                                         Padding="10, 0"
                                          Margin="0, 5"
                                          HorizontalOptions="Fill"
                                          Orientation="Horizontal">
-                                
-                                <Button WidthRequest="80"
-                                        BackgroundColor="Red"
-                                        TextColor="Black"
-                                        Text="Red"
-                                        CommandParameter="Red"
-                                        Margin="5, 0, 0, 0"
-                                        Clicked="OnClicked"/>
-                                <Button WidthRequest="80"
-                                        BackgroundColor="Yellow"
-                                        TextColor="Black"
-                                        Text="Yellow"
-                                        CommandParameter="Yellow"
-                                        Margin="5, 0, 5, 0"
-                                        Clicked="OnClicked"/>
-                                <Button WidthRequest="80"
-                                        BackgroundColor="Green"
-                                        TextColor="Black"
-                                        Text="Green"
-                                        CommandParameter="Green"
-                                        Margin="0, 0, 5, 0"
-                                        Clicked="OnClicked"/>
+                                <StackLayout>
+                                    <Image WidthRequest="60"
+                                        HeightRequest="60"
+                                        Source="bulls.png">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnClicked" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="BULLS" TextColor="Red" FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <Image WidthRequest="60"
+                                        HeightRequest="60"
+                                        Source="nets.png">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnClicked" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="NETS" TextColor="White" FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <Image WidthRequest="60"
+                                        HeightRequest="60"
+                                        Source="phila.png">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnClicked" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="PHILA" TextColor="Blue" FontAttributes="Bold"/>
+                                </StackLayout>
                             </StackLayout>
                         </DataTemplate>
                     </context:SideActionBarCell.ContextTemplate>

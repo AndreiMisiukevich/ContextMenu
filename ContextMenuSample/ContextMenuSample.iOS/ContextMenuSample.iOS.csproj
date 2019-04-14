@@ -166,4 +166,15 @@
       <Name>ContextMenu</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\..\..\Downloads\bulls.png">
+      <Link>Resources\bulls.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Downloads\phila.png">
+      <Link>Resources\phila.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Downloads\nets.png">
+      <Link>Resources\nets.png</Link>
+    </BundleResource>
+  </ItemGroup>
 </Project>

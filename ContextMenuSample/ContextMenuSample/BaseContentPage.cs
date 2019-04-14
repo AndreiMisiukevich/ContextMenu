@@ -5,7 +5,7 @@ namespace ContextMenuSample
 {
     public abstract class BaseContentPage : ContentPage
     {
-        protected T GetParent<T>(Button button, Element parent) where T : BaseActionViewCell
+        protected T GetParent<T>(View button, Element parent) where T : BaseActionViewCell
         {
             if (!(parent is T actionViewCell))
             {
