@@ -158,7 +158,6 @@ namespace ContextMenu.Droid
 			}
 
 			hScrolView.SmoothScrollingEnabled = true;
-			SmoothScrollingEnabled = true;
 
 			var animated = e.ShouldAnimate;
 			switch ((Element as XScrollView).Orientation)
