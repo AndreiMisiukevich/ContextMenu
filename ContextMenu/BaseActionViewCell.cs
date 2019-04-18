@@ -122,19 +122,19 @@ namespace ContextMenu
 
             if (_isFirst)
             {
-                _originalMainContentWidth = Content.Width;
+                _originalMainContentWidth = Content.WidthRequest;
                 _isFirst = false;
             }
             MainContentWidth = _originalMainContentWidth;
 
             if (OuterLeftContent != null)
             {
-                MainContentWidth -= OuterLeftContent.Width;
+                MainContentWidth -= OuterLeftContent.Width; // TODO (Android): Width is always -1
             }
 
             if (OuterRightContent != null)
             {
-                MainContentWidth -= OuterRightContent.Width;
+                MainContentWidth -= OuterRightContent.Width; // TODO (Android): Width is always -1
             }
 
             Content.WidthRequest = MainContentWidth;
