@@ -6,6 +6,9 @@ namespace ContextMenu
 {
     public abstract class BaseActionViewCell : ViewCell
     {
+        private double _originalMainContentWidth;
+        private bool _isFirst = true;
+
         public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             (bindable as BaseActionViewCell).SetContentView(content: newValue as View);
@@ -117,7 +120,12 @@ namespace ContextMenu
                 return;
             }
 
-            MainContentWidth = Content.Width;
+            if (_isFirst)
+            {
+                _originalMainContentWidth = Content.Width;
+                _isFirst = false;
+            }
+            MainContentWidth = _originalMainContentWidth;
 
             if (OuterLeftContent != null)
             {
@@ -230,7 +238,6 @@ namespace ContextMenu
 
                 AllContent.Content = _grid;
             }
-            //SetMainContentWidth();
         }
 
         protected abstract void SetContextView(View context);
