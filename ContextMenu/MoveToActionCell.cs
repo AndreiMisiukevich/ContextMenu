@@ -16,7 +16,7 @@ namespace ContextMenu
         public MoveToActionCell()
         {
             _mainView = new AbsoluteLayout();
-            _mainView.Children.Add(Scroll, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
+            _mainView.Children.Add(AllContent, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
             View = _mainView;
 
             ContextMenuOpened += (obj) =>
