@@ -8,7 +8,7 @@ namespace ContextMenu
 
         public SideActionBarCell()
         {
-            View = Scroll;
+            View = AllContent;
             TouchStarted += OnTouchStarted;
             TouchEnded += OnTouchEnded;
         }
@@ -26,7 +26,7 @@ namespace ContextMenu
         => SetThisAsLastOpenedCell();
 
         protected override void SetContextView(View context)
-        => (View as ContextMenuScrollView).ContextView = context;
+        => Scroll.ContextView = context;
 
         protected override void OnDisappearing()
         {

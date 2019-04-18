@@ -167,14 +167,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="..\..\..\..\Downloads\bulls.png">
+    <BundleResource Include="..\..\files\bulls.png">
       <Link>Resources\bulls.png</Link>
     </BundleResource>
-    <BundleResource Include="..\..\..\..\Downloads\phila.png">
-      <Link>Resources\phila.png</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\..\..\Downloads\nets.png">
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\files\nets.png">
       <Link>Resources\nets.png</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\files\phila.png">
+      <Link>Resources\phila.png</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

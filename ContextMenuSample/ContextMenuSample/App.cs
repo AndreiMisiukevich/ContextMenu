@@ -23,6 +23,11 @@ namespace ContextMenuSample
                             },
                             new Button
                             {
+                                Text = "Side Action Bar with Outer Content",
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new SideActionBarOuterContentSamplePage()))
+                            },
+                            new Button
+                            {
                                 Text = "Move To Action",
                                 Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToActionSamplePage()))
                             },

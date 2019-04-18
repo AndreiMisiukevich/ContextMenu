@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:BaseContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
     xmlns:local="clr-namespace:ContextMenuSample"
-    x:Class="ContextMenuSample.SideActionBarSamplePage">
+    x:Class="ContextMenuSample.SideActionBarOuterContentSamplePage">
     <ListView x:Name="SampleList"
               RowHeight="100"
               BackgroundColor="Black"
               SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <context:SideActionBarCell>
+                <context:SideActionBarCell x:Name="sideActionBarCell">
                     <context:SideActionBarCell.Content>
                         <StackLayout Margin="0, 5" 
                                      BackgroundColor="White"
@@ -35,6 +35,34 @@
                                     Clicked="OnOpenClicked"/>
                         </StackLayout>
                     </context:SideActionBarCell.Content>
+                    <context:SideActionBarCell.OuterLeftContent>
+                        <StackLayout
+                            Margin="0, 5"
+                            Orientation="Vertical"
+                            BackgroundColor="Black">
+                            <Label 
+                                Margin="5, 0"
+                                Text="Outer"
+                                TextColor="White"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="Center">
+                            </Label>
+                            <Label 
+                                Margin="5, 0"
+                                Text="Left"
+                                TextColor="White"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="Center">
+                            </Label>
+                            <Label 
+                                Margin="5, 0"
+                                Text="Content"
+                                TextColor="White"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="Center">
+                            </Label>
+                        </StackLayout>
+                    </context:SideActionBarCell.OuterLeftContent>
                     <context:SideActionBarCell.ContextTemplate>
                         <DataTemplate>
                             <StackLayout Spacing="10"

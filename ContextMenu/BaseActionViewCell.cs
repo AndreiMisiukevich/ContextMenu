@@ -8,7 +8,17 @@ namespace ContextMenu
     {
         public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            (bindable as BaseActionViewCell).SetContentView(newValue as View);
+            (bindable as BaseActionViewCell).SetContentView(content: newValue as View);
+        });
+
+        public static readonly BindableProperty OuterLeftContentProperty = BindableProperty.Create(nameof(OuterLeftContent), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            (bindable as BaseActionViewCell).SetContentView(outerLeftContent: newValue as View);
+        });
+
+        public static readonly BindableProperty OuterRightContentProperty = BindableProperty.Create(nameof(OuterRightContent), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            (bindable as BaseActionViewCell).SetContentView(outerRightContent: newValue as View);
         });
 
         public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -34,6 +44,18 @@ namespace ContextMenu
             set => SetValue(ContentProperty, value);
         }
 
+        public View OuterLeftContent
+        {
+            get => GetValue(OuterLeftContentProperty) as View;
+            set => SetValue(OuterLeftContentProperty, value);
+        }
+
+        public View OuterRightContent
+        {
+            get => GetValue(OuterRightContentProperty) as View;
+            set => SetValue(OuterRightContentProperty, value);
+        }
+
         public DataTemplate ContextTemplate
         {
             get => GetValue(ContextTemplateProperty) as DataTemplate;
@@ -45,6 +67,10 @@ namespace ContextMenu
             get => (bool)GetValue(IsAutoCloseEnabledProperty);
             set => SetValue(IsAutoCloseEnabledProperty, value);
         }
+
+        public double MainContentWidth { get; set; }
+
+        protected ContentView AllContent { get; } = new ContentView();
 
         protected ContextMenuScrollView Scroll { get; } = new ContextMenuScrollView();
 
@@ -83,8 +109,129 @@ namespace ContextMenu
             Scroll.ForceOpenContextMenu(Scroll, animated);
         }
 
-        protected void SetContentView(View content)
-        => Scroll.ContentView = content;
+        protected void SetMainContentWidth()
+        {
+            if (Content == null)
+            {
+                MainContentWidth = 0;
+                return;
+            }
+
+            MainContentWidth = Content.Width;
+
+            if (OuterLeftContent != null)
+            {
+                MainContentWidth -= OuterLeftContent.Width;
+            }
+
+            if (OuterRightContent != null)
+            {
+                MainContentWidth -= OuterRightContent.Width;
+            }
+
+            Content.WidthRequest = MainContentWidth;
+        }
+
+        protected void SetContentView(View content = null, View outerLeftContent = null, View outerRightContent = null)
+        {
+            if (content == null && outerLeftContent == null && outerRightContent == null)
+            {
+                return;
+            }
+
+            if (content != null)
+            {
+                Scroll.ContentView = content;
+            }
+            if (outerLeftContent == null && outerRightContent == null)
+            {
+                AllContent.Content = Scroll;
+            }
+            else if (outerLeftContent != null && outerRightContent == null)
+            {
+                Grid _grid = new Grid
+                {
+                    ColumnSpacing = 0
+                };
+
+                _grid.RowDefinitions = new RowDefinitionCollection
+                {
+                    new RowDefinition()
+                };
+
+                _grid.ColumnDefinitions = new ColumnDefinitionCollection
+                {
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                    new ColumnDefinition { Width = new GridLength(1,  GridUnitType.Star) }
+                };
+
+                _grid.Children.Add(outerLeftContent);
+                Grid.SetRow(outerLeftContent, 0);
+                Grid.SetColumn(outerLeftContent, 0);
+
+                _grid.Children.Add(Scroll);
+                Grid.SetRow(Scroll, 0);
+                Grid.SetColumn(Scroll, 1);
+
+                AllContent.Content = _grid;
+            }
+            else if (outerLeftContent == null && outerRightContent != null)
+            {
+                Grid _grid = new Grid();
+
+                _grid.RowDefinitions = new RowDefinitionCollection
+                {
+                    new RowDefinition()
+                };
+
+                _grid.ColumnDefinitions = new ColumnDefinitionCollection
+                {
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1,  GridUnitType.Auto) }
+                };
+
+                _grid.Children.Add(Scroll);
+                Grid.SetRow(Scroll, 0);
+                Grid.SetColumn(Scroll, 0);
+
+                _grid.Children.Add(outerRightContent);
+                Grid.SetRow(outerRightContent, 0);
+                Grid.SetColumn(outerRightContent, 1);
+
+                AllContent.Content = _grid;
+            }
+            else if (outerLeftContent != null && outerRightContent != null)
+            {
+                Grid _grid = new Grid();
+
+                _grid.RowDefinitions = new RowDefinitionCollection
+                {
+                    new RowDefinition()
+                };
+
+                _grid.ColumnDefinitions = new ColumnDefinitionCollection
+                {
+                    new ColumnDefinition { Width = new GridLength(1,  GridUnitType.Auto) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1,  GridUnitType.Auto) }
+                };
+
+                _grid.Children.Add(outerLeftContent);
+                Grid.SetRow(outerLeftContent, 0);
+                Grid.SetColumn(outerLeftContent, 0);
+
+                _grid.Children.Add(Scroll);
+                Grid.SetRow(Scroll, 0);
+                Grid.SetColumn(Scroll, 1);
+
+                _grid.Children.Add(outerRightContent);
+                Grid.SetRow(outerRightContent, 0);
+                Grid.SetColumn(outerRightContent, 2);
+
+                AllContent.Content = _grid;
+            }
+            //SetMainContentWidth();
+        }
 
         protected abstract void SetContextView(View context);
 
@@ -95,6 +242,7 @@ namespace ContextMenu
             Scroll.TouchEnded += OnTouchEnded;
             Scroll.ActionBarOpened += OnContextMenuOpened;
             Scroll.ActionBarClosed += OnContextMenuClosed;
+            SetMainContentWidth();
         }
 
         protected override void OnDisappearing()
