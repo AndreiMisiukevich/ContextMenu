@@ -17,12 +17,19 @@ namespace ContextMenu
         public static readonly BindableProperty OuterLeftContentProperty = BindableProperty.Create(nameof(OuterLeftContent), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             (bindable as BaseActionViewCell).SetContentView(outerLeftContent: newValue as View);
+            ((View)newValue).SizeChanged += new EventHandler((sender, e) => BaseActionViewCell_SizeChanged(sender, e, bindable as BaseActionViewCell));
         });
 
         public static readonly BindableProperty OuterRightContentProperty = BindableProperty.Create(nameof(OuterRightContent), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             (bindable as BaseActionViewCell).SetContentView(outerRightContent: newValue as View);
+            ((View)newValue).SizeChanged += new EventHandler((sender, e) => BaseActionViewCell_SizeChanged(sender, e, bindable as BaseActionViewCell));
         });
+
+        private static void BaseActionViewCell_SizeChanged(object sender, EventArgs e, BaseActionViewCell baseActionViewCell)
+        {
+            baseActionViewCell.SetMainContentWidth();
+        }
 
         public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -129,12 +136,12 @@ namespace ContextMenu
 
             if (OuterLeftContent != null)
             {
-                MainContentWidth -= OuterLeftContent.Width; // TODO (Android): Width is always -1
+                MainContentWidth -= OuterLeftContent.Width;
             }
 
             if (OuterRightContent != null)
             {
-                MainContentWidth -= OuterRightContent.Width; // TODO (Android): Width is always -1
+                MainContentWidth -= OuterRightContent.Width;
             }
 
             Content.WidthRequest = MainContentWidth;
@@ -249,7 +256,6 @@ namespace ContextMenu
             Scroll.TouchEnded += OnTouchEnded;
             Scroll.ActionBarOpened += OnContextMenuOpened;
             Scroll.ActionBarClosed += OnContextMenuClosed;
-            SetMainContentWidth();
         }
 
         protected override void OnDisappearing()
