@@ -12,7 +12,7 @@ namespace ContextMenuSample
     {
         public MoveToActionAutoCloseSamplePage()
         {
-            var sampleList = new ListView
+            var sampleList = new ListView(ListViewCachingStrategy.RecycleElement)
             {
                 RowHeight = 80,
                 BackgroundColor = Color.Black,
@@ -22,10 +22,10 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() =>
             {
-                var cell = new MoveToActionCell
+                var view = new SwipeContextMenuView
                 {
                     MovedCommand = new Command<MessageModel>(OnMovedExecuted),
-                    Content = new ContentView
+                    View = new ContentView
                     {
                         Margin = new Thickness(0, 5),
                         BackgroundColor = Color.White,
@@ -53,7 +53,7 @@ namespace ContextMenuSample
                     }.With(v => v.SetBinding(BackgroundColorProperty, new Binding(nameof(MessageModel.IsMuted), converter: new IsMutedToBackgroundColorConverter()))))
                 };
 
-                return cell;
+                return new ViewCell { View = view };
             });
 
             Content = sampleList;

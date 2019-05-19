@@ -25,7 +25,7 @@ namespace ContextMenuSample.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 
-			ContextMenuScrollViewRenderer.Initialize();
+			ContextMenuViewRenderer.Preserve();
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);

@@ -5,14 +5,13 @@ using Xamarin.Forms;
 using Foundation;
 using ContextMenu;
 
-[assembly: ExportRenderer(typeof(ContextMenuScrollView), typeof(ContextMenuScrollViewRenderer))]
+[assembly: ExportRenderer(typeof(BaseContextMenuView), typeof(ContextMenuViewRenderer))]
 namespace ContextMenu.iOS
 {
-    [Obsolete]
 	[Preserve(AllMembers = true)]
-	public class ContextMenuScrollViewRenderer : ScrollViewRenderer
+	public class ContextMenuViewRenderer : ScrollViewRenderer
 	{
-		public static void Initialize()
+		public static void Preserve()
 		{
 		}
 
@@ -43,17 +42,17 @@ namespace ContextMenu.iOS
 
 		private void OnDecelerationStarted(object sender, EventArgs e)
 		{
-			(Element as ContextMenuScrollView)?.OnFlingStarted();
+			(Element as BaseContextMenuView)?.OnFlingStarted();
 		}
 
 		private void OnDraggingEnded(object sender, EventArgs e)
 		{
-			(Element as ContextMenuScrollView)?.OnTouchEnded();
+			(Element as BaseContextMenuView)?.OnTouchEnded();
 		}
 
 		private void OnDraggingStarted(object sender, EventArgs e)
 		{
-			(Element as ContextMenuScrollView)?.OnTouchStarted();
+			(Element as BaseContextMenuView)?.OnTouchStarted();
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Windows.Input;
 
 namespace ContextMenu
 {
+    [Obsolete]
     public class MoveToActionCell : BaseActionViewCell
     {
         private readonly AbsoluteLayout _mainView;

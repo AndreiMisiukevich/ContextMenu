@@ -1,23 +1,37 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using System;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace ContextMenu
 {
     public enum ScrollDirection { Close, Open }
     public enum ScrollState { Closed, Opened, Moving }
 
-    public class ContextMenuScrollView : ScrollView
+    public abstract class BaseContextMenuView : ScrollView
     {
-        public event Action TouchStarted;
-        public event Action TouchEnded;
-        public event Action ActionBarOpened;
-        public event Action ActionBarClosed;
+        public static readonly BindableProperty ViewProperty = BindableProperty.Create(nameof(View), typeof(View), typeof(BaseContextMenuView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            (bindable as BaseContextMenuView).SetViewContent(newValue as View);
+        });
 
-        private View _contentView;
-        private View _contextView = new ContentView { WidthRequest = 1 };
+        public static readonly BindableProperty ContextTemplateProperty = BindableProperty.Create(nameof(ContextTemplate), typeof(DataTemplate), typeof(BaseContextMenuView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            (bindable as BaseContextMenuView).IsContextChanged = true;
+        });
 
-        public ContextMenuScrollView()
+        public static readonly BindableProperty AcceptWidthPercentageProperty = BindableProperty.Create(nameof(AcceptWidthPercentage), typeof(double), typeof(BaseContextMenuView), 0.33, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            (bindable as BaseContextMenuView).MovingWidthMultiplier = (double)newValue;
+        });
+
+        public static readonly BindableProperty IsAutoCloseEnabledProperty = BindableProperty.Create(nameof(IsAutoCloseEnabled), typeof(bool), typeof(BaseContextMenuView), true);
+
+        public event Action<BaseContextMenuView> ContextMenuOpened;
+        public event Action<BaseContextMenuView> ContextMenuClosed;
+        public event Action<BaseContextMenuView> TouchStarted;
+        public event Action<BaseContextMenuView> TouchEnded;
+
+        protected BaseContextMenuView()
         {
             Orientation = ScrollOrientation.Horizontal;
             VerticalOptions = LayoutOptions.Fill;
@@ -38,6 +52,106 @@ namespace ContextMenu
 
             Scrolled += OnScrolled;
         }
+
+        private bool IsContextChanged { get; set; }
+
+        public View View
+        {
+            get => GetValue(ViewProperty) as View;
+            set => SetValue(ViewProperty, value);
+        }
+
+        public DataTemplate ContextTemplate
+        {
+            get => GetValue(ContextTemplateProperty) as DataTemplate;
+            set => SetValue(ContextTemplateProperty, value);
+        }
+
+        public double AcceptWidthPercentage
+        {
+            get => (double)GetValue(AcceptWidthPercentageProperty);
+            set => SetValue(AcceptWidthPercentageProperty, value);
+        }
+
+        public bool IsAutoCloseEnabled
+        {
+            get => (bool)GetValue(IsAutoCloseEnabledProperty);
+            set => SetValue(IsAutoCloseEnabledProperty, value);
+        }
+
+        public void ForceClose(bool animated = true)
+            => ForceCloseContextMenu(this, animated);
+
+        public virtual async void ForceOpen(bool animated = true)
+        {
+            SetContextViewIfNeeded();
+            var context = ContextView;
+            if (context == null)
+            {
+                return;
+            }
+            var width = Math.Max(context.Width, context.WidthRequest);
+            var widthCompletionSource = new TaskCompletionSource<bool>();
+            if (width <= 0)
+            {
+                EventHandler onSizeChanged = null;
+                onSizeChanged = (sender, e) =>
+                {
+                    var v = (View)sender;
+                    if (v.Width > 0 && v.Height > 0)
+                    {
+                        v.SizeChanged -= onSizeChanged;
+                        widthCompletionSource.SetResult(true);
+                    }
+                };
+                context.SizeChanged += onSizeChanged;
+            }
+            else
+            {
+                widthCompletionSource.SetResult(true);
+            }
+            await widthCompletionSource.Task;
+            ForceOpenContextMenu(this, animated);
+        }
+
+        protected void SetViewContent(View content)
+        => ContentView = content;
+
+        protected abstract void SetContextView(View context);
+
+        protected override void OnBindingContextChanged()
+        {
+            IsContextChanged = true;
+            ForceClose(false);
+            base.OnBindingContextChanged();
+        }
+
+        private void SetContextViewIfNeeded()
+        {
+            if (IsContextChanged)
+            {
+                IsContextChanged = false;
+
+                var template = ContextTemplate is DataTemplateSelector selector
+                    ? selector.SelectTemplate(BindingContext, this)
+                      : ContextTemplate;
+
+                if (template == null)
+                {
+                    return;
+                }
+                SetContextView(template.CreateContent() as View);
+            }
+        }
+
+        private void OnContextMenuOpened() => ContextMenuOpened?.Invoke(this);
+
+        private void OnContextMenuClosed() => ContextMenuClosed?.Invoke(this);
+
+        #region LEGACY CODE
+
+        private View _contentView;
+        private View _contextView = new ContentView { WidthRequest = 1 };
 
         protected StackLayout ViewStack { get; }
         protected ScrollDirection CurrentDirection { get; private set; }
@@ -87,7 +201,7 @@ namespace ContextMenu
 
         public double MovingWidthMultiplier { get; set; } = 0.33;
 
-        public async void ForceCloseContextMenu(ContextMenuScrollView view, bool animated)
+        public async void ForceCloseContextMenu(BaseContextMenuView view, bool animated)
         {
             if (view == null)
             {
@@ -107,7 +221,7 @@ namespace ContextMenu
             }
         }
 
-        public async void ForceOpenContextMenu(ContextMenuScrollView view, bool animated)
+        public async void ForceOpenContextMenu(BaseContextMenuView view, bool animated)
         {
             var width = view?.ContextView?.Width;
             if (width.GetValueOrDefault() <= 0)
@@ -128,14 +242,15 @@ namespace ContextMenu
         public virtual void OnTouchStarted()
         {
             IsInteracted = true;
-            TouchStarted?.Invoke();
+            TouchStarted?.Invoke(this);
+            SetContextViewIfNeeded();
             HasBeenAccelerated = false;
         }
 
         public virtual async void OnTouchEnded()
         {
             IsInteracted = false;
-            TouchEnded?.Invoke();
+            TouchEnded?.Invoke(this);
             CheckActionBarState();
             if (Device.RuntimePlatform == Device.Android)
             {
@@ -233,20 +348,22 @@ namespace ContextMenu
 
         protected void CheckActionBarState()
         {
-            if(IsInteracted)
+            if (IsInteracted)
             {
                 return;
             }
 
             if (ScrollX >= ContextView.Width)
             {
-                ActionBarOpened?.Invoke();
+                ContextMenuOpened?.Invoke(this);
                 return;
             }
             if (ScrollX <= 0)
             {
-                ActionBarClosed?.Invoke();
+                ContextMenuClosed?.Invoke(this);
             }
         }
+
+        #endregion
     }
 }

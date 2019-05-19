@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ContextMenu.Droid;
 
 namespace ContextMenuSample.Droid
 {
@@ -20,6 +21,7 @@ namespace ContextMenuSample.Droid
 			base.OnCreate(bundle);
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
+            ContextMenuViewRenderer.Preserve();
 			LoadApplication(new App());
 		}
 	}

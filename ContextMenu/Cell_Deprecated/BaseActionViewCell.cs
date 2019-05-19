@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace ContextMenu
 {
+    [Obsolete]
     public abstract class BaseActionViewCell : ViewCell
     {
         public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>

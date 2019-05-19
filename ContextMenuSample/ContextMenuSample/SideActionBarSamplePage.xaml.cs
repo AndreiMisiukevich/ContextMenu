@@ -18,13 +18,13 @@ namespace ContextMenuSample
             var button = sender as Button;
             DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
 
-            Device.BeginInvokeOnMainThread(() => GetParent<SideActionBarCell>(button, button.Parent).ForceClose());
+            Device.BeginInvokeOnMainThread(() => GetParent<SideContextMenuView>(button).ForceClose());
         }
 
         private void OnOpenClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
-            Device.BeginInvokeOnMainThread(() => GetParent<SideActionBarCell>(button, button.Parent).ForceOpen());
+            Device.BeginInvokeOnMainThread(() => GetParent<SideContextMenuView>(button).ForceOpen());
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Xamarin.Forms;
+using System;
 
 namespace ContextMenu
 {
+    [Obsolete]
     public class SideActionBarCell : BaseActionViewCell
     {
         public static SideActionBarCell LastOpenedCell { get; private set; }

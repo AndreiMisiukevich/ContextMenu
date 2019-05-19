@@ -12,23 +12,26 @@ using Android.Runtime;
 using ContextMenu.Droid;
 using ContextMenu;
 
-[assembly: ExportRenderer(typeof(ContextMenuScrollView), typeof(ContextMenuScrollViewRenderer))]
+[assembly: ExportRenderer(typeof(BaseContextMenuView), typeof(ContextMenuViewRenderer))]
 namespace ContextMenu.Droid
 {
-    [Obsolete]
 	[Preserve(AllMembers = true)]
-	public class ContextMenuScrollViewRenderer : ScrollViewRenderer
+	public class ContextMenuViewRenderer : ScrollViewRenderer
 	{
 		private GestureDetector _detector;
 		private bool _isAttachedNew;
 
-		[Obsolete("For Forms <= 2.4")]
-		public ContextMenuScrollViewRenderer()
+        public static void Preserve()
+        {
+        }
+
+        [Obsolete("For Forms <= 2.4")]
+		public ContextMenuViewRenderer()
 		{
 			CreateGestureDetector();
 		}
 
-		public ContextMenuScrollViewRenderer(Context context) : base(context)
+		public ContextMenuViewRenderer(Context context) : base(context)
 		{
 			CreateGestureDetector();
 		}
@@ -64,11 +67,11 @@ namespace ContextMenu.Droid
 			switch (e.ActionMasked)
 			{
 				case MotionEventActions.Down:
-					(Element as ContextMenuScrollView)?.OnTouchStarted();
+					(Element as BaseContextMenuView)?.OnTouchStarted();
 					break;
 				case MotionEventActions.Up:
 				case MotionEventActions.Cancel:
-					(Element as ContextMenuScrollView)?.OnTouchEnded();
+					(Element as BaseContextMenuView)?.OnTouchEnded();
 					break;
 			}
 			return base.DispatchTouchEvent(e);
@@ -103,7 +106,7 @@ namespace ContextMenu.Droid
 
 		private void OnFlinged()
 		{
-			(Element as ContextMenuScrollView)?.OnFlingStarted();
+			(Element as BaseContextMenuView)?.OnFlingStarted();
 		}
 
 		#region Copied from XF sources
@@ -208,5 +211,16 @@ namespace ContextMenu.Droid
 		}
 
 		#endregion
+	}
+
+	internal class ContextGestureListener : GestureDetector.SimpleOnGestureListener
+	{
+		internal event Action Flinged;
+
+		public override bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+		{
+			Flinged?.Invoke();
+			return base.OnFling(e1, e2, velocityX, velocityY);
+		}
 	}
 }

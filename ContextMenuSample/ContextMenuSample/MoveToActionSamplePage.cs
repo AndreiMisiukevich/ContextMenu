@@ -20,27 +20,30 @@ namespace ContextMenuSample
                 ItemsSource = items
             };
 
-            sampleList.ItemTemplate = new DataTemplate(() => new MoveToActionCell
+            sampleList.ItemTemplate = new DataTemplate(() => new ViewCell
             {
-                IsAutoCloseEnabled = false,
-                MovedCommand = new Command(p => items.Remove((int)p)),
-                Content = new ContentView
+                View = new SwipeContextMenuView
                 {
-                    Margin = new Thickness(0, 5),
-                    BackgroundColor = Color.White,
-                    Content = new Label
+                    IsAutoCloseEnabled = false,
+                    MovedCommand = new Command(p => items.Remove((int)p)),
+
+                    View = new ContentView
                     {
-                        TextColor = Color.Black,
-                        FontSize = 30,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        VerticalOptions = LayoutOptions.CenterAndExpand
-                    }.With(v => v.SetBinding(Label.TextProperty, "."))
-                }.With(v => v.SetBinding(WidthRequestProperty, new Binding { Source = sampleList, Path = nameof(Width) })),
-                ContextTemplate = new DataTemplate(() => new StackLayout
-                {
-                    Margin = new Thickness(0, 5),
-                    BackgroundColor = Color.Red,
-                    Children = {
+                        Margin = new Thickness(0, 5),
+                        BackgroundColor = Color.White,
+                        Content = new Label
+                        {
+                            TextColor = Color.Black,
+                            FontSize = 30,
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            VerticalOptions = LayoutOptions.CenterAndExpand
+                        }.With(v => v.SetBinding(Label.TextProperty, "."))
+                    }.With(v => v.SetBinding(WidthRequestProperty, new Binding { Source = sampleList, Path = nameof(Width) })),
+                    ContextTemplate = new DataTemplate(() => new StackLayout
+                    {
+                        Margin = new Thickness(0, 5),
+                        BackgroundColor = Color.Red,
+                        Children = {
                         new Label
                         {
                             Text = "Move to Delete",
@@ -52,7 +55,8 @@ namespace ContextMenuSample
                             VerticalTextAlignment = TextAlignment.Center
                         }
                     }
-                })
+                    })
+                }
             });
 
             Content = sampleList;
@@ -62,7 +66,7 @@ namespace ContextMenuSample
         {
             var button = sender as Button;
             DisplayAlert($"{button.CommandParameter} clicked", null, "OK");
-            GetParent<MoveToActionCell>(button, button.Parent).ForceClose();
+            GetParent<BaseContextMenuView>(button).ForceClose();
         }
     }
 }

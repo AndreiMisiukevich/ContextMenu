@@ -1,18 +1,16 @@
-﻿using ContextMenu;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ContextMenuSample
 {
     public abstract class BaseContentPage : ContentPage
     {
-        protected T GetParent<T>(Button button, Element parent) where T : BaseActionViewCell
+        protected T GetParent<T>(Element element) where T : Element
         {
-            if (!(parent is T actionViewCell))
+            if (element is T view)
             {
-                actionViewCell = GetParent<T>(button, parent.Parent);
+                return view;
             }
-
-            return actionViewCell;
+            return GetParent<T>(element.Parent);
         }
     }
 }
