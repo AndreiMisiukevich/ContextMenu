@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
 
-namespace ContextMenu
+namespace ContextMenu.Views
 {
     public class SwipeActionContextMenuView : BaseContextMenuView
     {

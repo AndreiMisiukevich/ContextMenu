@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Xamarin.Forms;
+
 namespace ContextMenuSample.ViewModels
 {
     public class MoveToDeleteViewModel : BaseViewModel

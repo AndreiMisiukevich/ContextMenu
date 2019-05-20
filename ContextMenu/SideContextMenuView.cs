@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace ContextMenu
+namespace ContextMenu.Views
 {
     public class SideContextMenuView : BaseContextMenuView
     {

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using ContextMenu;
 using System.Linq;
 using System.Collections.ObjectModel;
+using ContextMenu.Views;
 
 namespace ContextMenuSample
 {

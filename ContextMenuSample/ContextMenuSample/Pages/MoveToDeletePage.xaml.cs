@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using ContextMenuSample.ViewModels;
 
 namespace ContextMenuSample.Pages
 {
@@ -9,6 +10,7 @@ namespace ContextMenuSample.Pages
     {
         public MoveToDeletePage()
         {
+            BindingContext = new MoveToDeleteViewModel();
             InitializeComponent();
         }
     }

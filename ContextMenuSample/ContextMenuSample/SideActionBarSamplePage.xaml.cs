@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ContextMenu;
+using ContextMenu.Views;
 using Xamarin.Forms;
 
 namespace ContextMenuSample
