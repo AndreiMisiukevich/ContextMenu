@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using ContextMenu;
 using System.Linq;
 using ContextMenuSample.Pages;
+using ContextMenuSample.ViewModels;
 
 namespace ContextMenuSample
 {
@@ -10,6 +11,9 @@ namespace ContextMenuSample
     {
         public App()
         {
+#if DEBUG
+            HotReloader.Current.Start(this);
+#endif
             MainPage = new NavigationPage(new ContentPage
             {
                 Content = new ScrollView

@@ -3,12 +3,12 @@ using Xamarin.Forms;
 
 namespace ContextMenuSample.ViewModels
 {
-    public class MoveToDeleteViewModel : BaseViewModel
+    public class MoveToDeleteViewModel : BaseItemsViewModel
     {
         private ICommand _deleteCommand;
-        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command<Item>(item =>
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(item =>
         {
-            Items.Remove(item);
+            Items.Remove(item as Item);
         })); 
     }
 }

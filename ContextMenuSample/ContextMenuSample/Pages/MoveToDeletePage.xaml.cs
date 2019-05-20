@@ -10,7 +10,6 @@ namespace ContextMenuSample.Pages
     {
         public MoveToDeletePage()
         {
-            BindingContext = new MoveToDeleteViewModel();
             InitializeComponent();
         }
     }
