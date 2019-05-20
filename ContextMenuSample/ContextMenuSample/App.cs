@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using ContextMenu;
 using System.Linq;
+using ContextMenuSample.Pages;
 
 namespace ContextMenuSample
 {
@@ -24,7 +25,7 @@ namespace ContextMenuSample
                             new Button
                             {
                                 Text = "Move To Action",
-                                Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToActionSamplePage()))
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToDeletePage()))
                             },
                             new Button
                             {

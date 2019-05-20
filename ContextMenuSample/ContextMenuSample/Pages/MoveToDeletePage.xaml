@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ContextMenuSample.ViewModels;assembly=ContextMenu"
+             xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+             Title="Move to delete sample"
+             x:Class="ContextMenuSample.Pages.MoveToDeletePage">
+    <ContentPage.BindingContext>
+        <viewModels:MoveToDeleteViewModel/>
+    </ContentPage.BindingContext>
+   
+    <CollectionView ItemsSource="{Binding Items}"
+                    BackgroundColor="Black">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <context:SwipeActionContextHolder MovedCommand="{Binding DeleteCommand}">
+                    <context:SwipeActionContextMenuView>
+                        <context:SwipeActionContextMenuView.View>
+                            <StackLayout Orientation="Horizontal" 
+                                         Padding="15, 0"
+                                         Margin="0, 5"
+                                         Spacing="10"
+                                         BackgroundColor="White">
+                                <Frame HeightRequest="60"
+                                       WidthRequest="60"
+                                       CornerRadius="30"
+                                       IsClippedToBounds="true">
+                                    <Image Source="{Binding AvatarUrl}" Aspect="AspectFill"/>
+                                    <Label Text="Chat with:"/>
+                                    <Label Text="{Binding Name}" FontSize="Large"/>
+                                </Frame>
+                            </StackLayout>
+                        </context:SwipeActionContextMenuView.View>
+                        <context:SwipeActionContextMenuView.ContextTemplate>
+                            <DataTemplate>
+                                <StackLayout BackgroundColor="Red"
+                                             Padding="10, 0"
+                                             Margin="0, 5">
+                                    <Label Text="MOVE TO DELETE" 
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </context:SwipeActionContextMenuView.ContextTemplate>  
+                    </context:SwipeActionContextMenuView>
+                </context:SwipeActionContextHolder>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

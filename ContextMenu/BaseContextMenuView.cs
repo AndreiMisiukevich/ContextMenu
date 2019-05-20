@@ -1,12 +1,14 @@
 ﻿using Xamarin.Forms;
 using System;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ContextMenu
 {
     public enum ScrollDirection { Close, Open }
     public enum ScrollState { Closed, Opened, Moving }
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BaseContextMenuView : ScrollView
     {
         public static readonly BindableProperty ViewProperty = BindableProperty.Create(nameof(View), typeof(View), typeof(BaseContextMenuView), null, propertyChanged: (bindable, oldValue, newValue) =>

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace ContextMenu
 {
-    public class SwipeContextMenuView : BaseContextMenuView
+    public class SwipeActionContextMenuView : BaseContextMenuView
     {
         internal Action<View> ContextAction { get; set; }
 
@@ -13,17 +13,17 @@ namespace ContextMenu
             => ContextAction?.Invoke(context);
     }
 
-    public class SwipeContextHolder : AbsoluteLayout
+    public class SwipeActionContextHolder : AbsoluteLayout
     {
         private View _prevContext;
 
-        public static readonly BindableProperty MovedCommandProperty = BindableProperty.Create(nameof(MovedCommand), typeof(ICommand), typeof(SwipeContextHolder), null);
+        public static readonly BindableProperty MovedCommandProperty = BindableProperty.Create(nameof(MovedCommand), typeof(ICommand), typeof(SwipeActionContextHolder), null);
 
-        public static readonly BindableProperty VisibleWidthPercentageProperty = BindableProperty.Create(nameof(VisibleWidthPercentage), typeof(double), typeof(SwipeContextHolder), 1.0);
+        public static readonly BindableProperty VisibleWidthPercentageProperty = BindableProperty.Create(nameof(VisibleWidthPercentage), typeof(double), typeof(SwipeActionContextHolder), 1.0);
 
         public event Action<object> Moved;
 
-        public SwipeContextMenuView ContextMenu { get; private set; }
+        public SwipeActionContextMenuView ContextMenu { get; private set; }
 
         private bool _hasRenderer;
 
@@ -42,7 +42,7 @@ namespace ContextMenu
         protected override void OnChildAdded(Element child)
         {
             base.OnChildAdded(child);
-            if(child is SwipeContextMenuView menuView)
+            if(child is SwipeActionContextMenuView menuView)
             {
                 ContextMenu = menuView;
                 menuView.ContextAction = new Action<View>(context =>

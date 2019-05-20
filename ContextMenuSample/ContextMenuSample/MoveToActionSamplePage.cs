@@ -22,13 +22,13 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() => new ViewCell
             {
-                View = new SwipeContextHolder
+                View = new SwipeActionContextHolder
                 {
                     VisibleWidthPercentage = 0.6,
                     MovedCommand = new Command(p => items.Remove((int)p)),
                     Children =
                     {
-                        new SwipeContextMenuView
+                        new SwipeActionContextMenuView
                         {
                             IsAutoCloseEnabled = false,
 

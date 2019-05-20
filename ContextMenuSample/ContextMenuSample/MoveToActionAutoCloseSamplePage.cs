@@ -22,7 +22,7 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() =>
             {
-                var view = new SwipeContextMenuView
+                var view = new SwipeActionContextMenuView
                 {
                     View = new ContentView
                     {
@@ -54,7 +54,7 @@ namespace ContextMenuSample
 
                 return new ViewCell 
                 { 
-                    View = new SwipeContextHolder
+                    View = new SwipeActionContextHolder
                     {
                         MovedCommand = new Command<MessageModel>(OnMovedExecuted),
                         Children =
