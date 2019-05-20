@@ -19,10 +19,7 @@ namespace ContextMenu
             (bindable as BaseContextMenuView).IsContextChanged = true;
         });
 
-        public static readonly BindableProperty AcceptWidthPercentageProperty = BindableProperty.Create(nameof(AcceptWidthPercentage), typeof(double), typeof(BaseContextMenuView), 0.33, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            (bindable as BaseContextMenuView).MovingWidthMultiplier = (double)newValue;
-        });
+        public static readonly BindableProperty AcceptWidthPercentageProperty = BindableProperty.Create(nameof(AcceptWidthPercentage), typeof(double), typeof(BaseContextMenuView), 0.33);
 
         public static readonly BindableProperty IsAutoCloseEnabledProperty = BindableProperty.Create(nameof(IsAutoCloseEnabled), typeof(bool), typeof(BaseContextMenuView), true);
 
@@ -199,8 +196,6 @@ namespace ContextMenu
             }
         }
 
-        public double MovingWidthMultiplier { get; set; } = 0.33;
-
         public async void ForceCloseContextMenu(BaseContextMenuView view, bool animated)
         {
             if (view == null)
@@ -319,7 +314,7 @@ namespace ContextMenu
         }
 
         protected double GetMovingWidth(double contextWidth)
-        => contextWidth * MovingWidthMultiplier;
+        => contextWidth * AcceptWidthPercentage;
 
         protected void CheckScrollState()
         {

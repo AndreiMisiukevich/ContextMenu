@@ -22,40 +22,47 @@ namespace ContextMenuSample
 
             sampleList.ItemTemplate = new DataTemplate(() => new ViewCell
             {
-                View = new SwipeContextMenuView
+                View = new SwipeContextHolder
                 {
-                    IsAutoCloseEnabled = false,
+                    VisibleWidthPercentage = 0.6,
                     MovedCommand = new Command(p => items.Remove((int)p)),
+                    Children =
+                    {
+                        new SwipeContextMenuView
+                        {
+                            IsAutoCloseEnabled = false,
 
-                    View = new ContentView
-                    {
-                        Margin = new Thickness(0, 5),
-                        BackgroundColor = Color.White,
-                        Content = new Label
-                        {
-                            TextColor = Color.Black,
-                            FontSize = 30,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
-                            VerticalOptions = LayoutOptions.CenterAndExpand
-                        }.With(v => v.SetBinding(Label.TextProperty, "."))
-                    }.With(v => v.SetBinding(WidthRequestProperty, new Binding { Source = sampleList, Path = nameof(Width) })),
-                    ContextTemplate = new DataTemplate(() => new StackLayout
-                    {
-                        Margin = new Thickness(0, 5),
-                        BackgroundColor = Color.Red,
-                        Children = {
-                        new Label
-                        {
-                            Text = "Move to Delete",
-                            TextColor = Color.White,
-                            FontAttributes = FontAttributes.Bold,
-                            VerticalOptions = LayoutOptions.CenterAndExpand,
-                            HorizontalOptions = LayoutOptions.EndAndExpand,
-                            HorizontalTextAlignment = TextAlignment.End,
-                            VerticalTextAlignment = TextAlignment.Center
+                            View = new ContentView
+                            {
+                                Margin = new Thickness(0, 5),
+                                BackgroundColor = Color.White,
+                                Content = new Label
+                                {
+                                    TextColor = Color.Black,
+                                    FontSize = 30,
+                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                    VerticalOptions = LayoutOptions.CenterAndExpand
+                                }.With(v => v.SetBinding(Label.TextProperty, "."))
+                            }.With(v => v.SetBinding(WidthRequestProperty, new Binding { Source = sampleList, Path = nameof(Width) })),
+                            ContextTemplate = new DataTemplate(() => new StackLayout
+                            {
+                                Margin = new Thickness(10, 5),
+                                BackgroundColor = Color.Red,
+                                Children = {
+                                    new Label
+                                    {
+                                        Text = "Move to Delete",
+                                        TextColor = Color.White,
+                                        FontAttributes = FontAttributes.Bold,
+                                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                                        HorizontalOptions = LayoutOptions.EndAndExpand,
+                                        HorizontalTextAlignment = TextAlignment.End,
+                                        VerticalTextAlignment = TextAlignment.Center
+                                    }
+                                }
+                            })
                         }
                     }
-                    })
                 }
             });
 

@@ -24,7 +24,6 @@ namespace ContextMenuSample
             {
                 var view = new SwipeContextMenuView
                 {
-                    MovedCommand = new Command<MessageModel>(OnMovedExecuted),
                     View = new ContentView
                     {
                         Margin = new Thickness(0, 5),
@@ -53,7 +52,17 @@ namespace ContextMenuSample
                     }.With(v => v.SetBinding(BackgroundColorProperty, new Binding(nameof(MessageModel.IsMuted), converter: new IsMutedToBackgroundColorConverter()))))
                 };
 
-                return new ViewCell { View = view };
+                return new ViewCell 
+                { 
+                    View = new SwipeContextHolder
+                    {
+                        MovedCommand = new Command<MessageModel>(OnMovedExecuted),
+                        Children =
+                        {
+                            view
+                        }
+                    } 
+                };
             });
 
             Content = sampleList;
