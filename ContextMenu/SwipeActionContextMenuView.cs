@@ -27,6 +27,23 @@ namespace ContextMenu.Views
 
         private bool _hasRenderer;
 
+        private ContentView _context;
+
+        public SwipeActionContextHolder()
+        {
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                _context = new ContentView
+                {
+                    IsClippedToBounds = true
+                };
+
+                SetLayoutFlags(_context, AbsoluteLayoutFlags.All);
+                SetLayoutBounds(_context, new Rectangle(0, 0, 1, 1));
+                Children.Insert(0, _context);
+            }
+        }
+
         public ICommand MovedCommand
         {
             get => GetValue(MovedCommandProperty) as ICommand;
@@ -52,9 +69,17 @@ namespace ContextMenu.Views
                         Children.Remove(_prevContext);
                     }
                     _prevContext = context;
-                    SetLayoutFlags(context, AbsoluteLayoutFlags.All);
-                    SetLayoutBounds(context, new Rectangle(0, 0, 1, 1));
-                    Children.Insert(0, context);
+
+                    if (Device.RuntimePlatform == Device.Android)
+                    {
+                        _context.Content = context;
+                    }
+                    else
+                    {
+                        SetLayoutFlags(context, AbsoluteLayoutFlags.All);
+                        SetLayoutBounds(context, new Rectangle(0, 0, 1, 1));
+                        Children.Insert(0, context);
+                    }
 
                     ContextMenu.ContextView.WidthRequest = Math.Min(Width, Math.Abs(Width * VisibleWidthPercentage));
                     ContextMenu.ContextView.InputTransparent = true;
