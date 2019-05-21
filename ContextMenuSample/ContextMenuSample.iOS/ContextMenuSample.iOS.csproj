@@ -166,4 +166,12 @@
       <Name>ContextMenu</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\files\mute.png">
+      <Link>Resources\mute.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\files\trash.png">
+      <Link>Resources\trash.png</Link>
+    </BundleResource>
+  </ItemGroup>
 </Project>

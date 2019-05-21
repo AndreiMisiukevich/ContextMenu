@@ -93,6 +93,12 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="..\..\files\mute.png">
+      <Link>Resources\drawable\mute.png</Link>
+    </AndroidResource>
+    <AndroidResource Include="..\..\files\trash.png">
+      <Link>Resources\drawable\trash.png</Link>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

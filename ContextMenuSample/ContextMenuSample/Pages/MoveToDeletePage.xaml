@@ -4,8 +4,8 @@
              xmlns:viewModels="clr-namespace:ContextMenuSample.ViewModels"
              xmlns:conv="clr-namespace:ContextMenuSample.Converters"
              xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
-             Title="Move to delete sample"
-             x:DataType="viewModels:MoveToDeleteViewModel"
+             Title="move to delete sample"
+             x:DataType="viewModels:BaseItemsViewModel"
              x:Class="ContextMenuSample.Pages.MoveToDeletePage">
    
     <ContentPage.Resources>
@@ -13,11 +13,10 @@
             <conv:MenuFitWidthConverter x:Key="MenuFitWidthConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-
-
+    
     
     <ContentPage.BindingContext>
-        <viewModels:MoveToDeleteViewModel />
+        <viewModels:BaseItemsViewModel />
     </ContentPage.BindingContext>
     
     <CollectionView x:Name="CollectionView"

@@ -1,5 +1,91 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ContextMenuSample.Pages.SideMenuPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ContextMenuSample.ViewModels"
+             xmlns:conv="clr-namespace:ContextMenuSample.Converters"
+             xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
+             Title="side menu sample"
+             x:DataType="viewModels:BaseItemsViewModel"
+             x:Class="ContextMenuSample.Pages.SideMenuPage">
+   
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:MenuFitWidthConverter x:Key="MenuFitWidthConverter" />
+            <conv:IsMutedToTextConverter x:Key="IsMutedToTextConverter" />
+            <conv:IsMutedToOpacityConverter x:Key="IsMutedToOpacityConverter"/>
+            <conv:IsMutedToBackgroundColorConverter x:Key="IsMutedToBackgroundColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.BindingContext>
+        <viewModels:BaseItemsViewModel />
+    </ContentPage.BindingContext>
+    
+    <CollectionView x:Name="CollectionView"
+                    ItemsSource="{Binding Items}"
+                    Margin="0, 5, 0, 0"
+                    BackgroundColor="White">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <context:SideContextMenuView IsAutoCloseEnabled="true">
+                        <context:SideContextMenuView.View>
+                            <Frame BackgroundColor="#512DA8"
+                                   Margin="15,5"
+                                   Padding="20"
+                                   WidthRequest="{Binding Source={x:Reference CollectionView}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='70'}"
+                                   CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand"
+                                                                                Opacity="{Binding IsMuted, Converter={StaticResource IsMutedToOpacityConverter}}"
+                                             Spacing="10">
+                                    <Frame HeightRequest="80"
+                                           WidthRequest="80"
+                                           CornerRadius="40"
+                                           Padding="0"
+                                           VerticalOptions="CenterAndExpand"
+                                           IsClippedToBounds="true">
+                                        <Image Source="{Binding AvatarUrl}" 
+                                               Aspect="AspectFill"/>
+                                    </Frame>
+                                    <StackLayout VerticalOptions="CenterAndExpand"
+                                                 HorizontalOptions="CenterAndExpand"
+                                                 Spacing="0">
+                                        <Label Text="Chat with:"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="Large"
+                                               TextColor="White"/>
+                                    </StackLayout>
+                                </StackLayout>                             
+                            </Frame>
+                        </context:SideContextMenuView.View>
+                        <context:SideContextMenuView.ContextTemplate>
+                            <DataTemplate>
+                                <Frame Margin="0, 5"
+                                       Padding="0"
+                                       CornerRadius="10"
+                                       IsClippedToBounds="true"
+                                       BackgroundColor="Gold">
+                                    <StackLayout 
+                                             Padding="10, 5"
+                                             Orientation="Horizontal"
+                                             Spacing="10"
+                                             Margin="0, 5">
+                                        <ImageButton Source="trash.png" HeightRequest="60" WidthRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
+                                                     Command="{Binding BindingContext.DeleteCommand, Source={x:Reference CollectionView}}"
+                                                     CommandParameter="{Binding .}"/>
+                                        <ImageButton Source="mute.png" HeightRequest="60" WidthRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
+                                                     Command="{Binding BindingContext.MuteCommand, Source={x:Reference CollectionView}}"
+                                                     CommandParameter="{Binding .}"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </context:SideContextMenuView.ContextTemplate>  
+                    </context:SideContextMenuView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+   
 </ContentPage>

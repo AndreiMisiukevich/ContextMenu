@@ -23,18 +23,18 @@ namespace ContextMenuSample
                         Children = {
                             new Button
                             {
-                                Text = "Side Action Bar",
-                                Command = new Command(() => MainPage.Navigation.PushAsync(new SideActionBarSamplePage()))
+                                Text = "SIDE MENU BAR",
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new SideMenuPage()))
                             },
                             new Button
                             {
-                                Text = "Move To Action",
+                                Text = "MOVE TO DELETE",
                                 Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToDeletePage()))
                             },
                             new Button
                             {
-                                Text = "Move To Action with AutoClose enabled",
-                                Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToActionAutoCloseSamplePage()))
+                                Text = "MOVE TO MUTE (AUTOCLOSING)",
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToUpdatePage()))
                             }
                         }
                     }

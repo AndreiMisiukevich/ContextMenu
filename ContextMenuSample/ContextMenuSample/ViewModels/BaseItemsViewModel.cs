@@ -1,11 +1,26 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ContextMenuSample.ViewModels
 {
     public class BaseItemsViewModel : BaseViewModel
     {
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(item =>
+        {
+            Items.Remove(item as Item);
+        }));
+
+        private ICommand _muteCommand;
+        public ICommand MuteCommand => _muteCommand ?? (_muteCommand = new Command(item =>
+        {
+            var model = item as Item;
+            model.IsMuted = !model.IsMuted;
+        }));
+
         public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>
         {
             new Item

@@ -4,13 +4,13 @@ using Xamarin.Forms;
 
 namespace ContextMenuSample.Converters
 {
-    internal class IsMutedToTextConverter : IValueConverter
+    internal class IsMutedToOpacityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool isMuted)
             {
-                var result = isMuted ? "MOVE TO UNMUTE" : "MOVE TO MUTE";
+                var result = isMuted ? .6 : 1;
                 return result;
             }
 
