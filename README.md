@@ -105,12 +105,12 @@ You can adjust it by binding
 
 ```xml
 ...
-<ListView x:Name="SampleList"
+<CollectionView x:Name="Collection"
         <ListView.ItemTemplate>
             <DataTemplate>
-                <context:SideActionBarCell>
-                    <context:SideActionBarCell.Content>
-                        <ContentView WidthRequest="{Binding Source={x:Reference SampleList}, Path=Width}">
+                <context:SideContextMenuView>
+                    <context:SideContextMenuView.View>
+                        <ContentView WidthRequest="{Binding Source={x:Reference Collection}, Path=Width}">
                             ...
 ```
 
