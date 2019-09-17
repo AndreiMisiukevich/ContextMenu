@@ -21,6 +21,7 @@ namespace ContextMenu.Droid
 	{
 		private GestureDetector _detector;
 		private bool _isAttachedNew;
+		private bool _isDisposed;
 
 		[Obsolete("For Forms <= 2.4")]
 		public ContextMenuScrollViewRenderer()
@@ -89,10 +90,16 @@ namespace ContextMenu.Droid
 				Controller.ScrollToRequested += OnScrollToRequestedNew;
 			}
 		}
+		
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			_isDisposed |= disposing;
+		}
 
 		protected void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			if (ChildCount > 0)
+			if (!_isDisposed && ChildCount > 0)
 			{
 				var bar = GetChildAt(0);
 				bar.HorizontalScrollBarEnabled = false;
