@@ -99,12 +99,12 @@ namespace ContextMenu.Droid
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);
-			isDisposed |= disposing;
+			_isDisposed |= disposing;
 		}
 
 		protected void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			if (!isDisposed && ChildCount > 0)
+			if (!_isDisposed && ChildCount > 0)
 			{
 				var bar = GetChildAt(0);
 				bar.HorizontalScrollBarEnabled = false;
