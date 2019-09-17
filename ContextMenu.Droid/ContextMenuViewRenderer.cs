@@ -20,6 +20,7 @@ namespace ContextMenu.Droid
 	{
 		private GestureDetector _detector;
 		private bool _isAttachedNew;
+		private bool _isDisposed;
 
         public static void Preserve()
         {
@@ -93,9 +94,17 @@ namespace ContextMenu.Droid
 			}
 		}
 
+
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			isDisposed |= disposing;
+		}
+
 		protected void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			if (ChildCount > 0)
+			if (!isDisposed && ChildCount > 0)
 			{
 				var bar = GetChildAt(0);
 				bar.HorizontalScrollBarEnabled = false;
