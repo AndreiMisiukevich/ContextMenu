@@ -163,10 +163,6 @@ namespace ContextMenu
             }
         }
 
-        private void OnContextMenuOpened() => ContextMenuOpened?.Invoke(this);
-
-        private void OnContextMenuClosed() => ContextMenuClosed?.Invoke(this);
-
         #region LEGACY CODE
 
         private View _contentView;
