@@ -1328,6 +1328,7 @@ namespace ContextMenuSample.Droid
 			global::ContextMenu.Droid.Resource.Id.main_appbar = global::ContextMenuSample.Droid.Resource.Id.main_appbar;
 			global::ContextMenu.Droid.Resource.Id.main_tablayout = global::ContextMenuSample.Droid.Resource.Id.main_tablayout;
 			global::ContextMenu.Droid.Resource.Id.main_toolbar = global::ContextMenuSample.Droid.Resource.Id.main_toolbar;
+			global::ContextMenu.Droid.Resource.Id.main_viewpager = global::ContextMenuSample.Droid.Resource.Id.main_viewpager;
 			global::ContextMenu.Droid.Resource.Id.masked = global::ContextMenuSample.Droid.Resource.Id.masked;
 			global::ContextMenu.Droid.Resource.Id.media_actions = global::ContextMenuSample.Droid.Resource.Id.media_actions;
 			global::ContextMenu.Droid.Resource.Id.message = global::ContextMenuSample.Droid.Resource.Id.message;
@@ -2174,6 +2175,7 @@ namespace ContextMenuSample.Droid
 			global::ContextMenu.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::ContextMenuSample.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
 			global::ContextMenu.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::ContextMenuSample.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
 			global::ContextMenu.Droid.Resource.Style.Widget_Support_CoordinatorLayout = global::ContextMenuSample.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::ContextMenu.Droid.Resource.Style.collectionViewStyle = global::ContextMenuSample.Droid.Resource.Style.collectionViewStyle;
 			global::ContextMenu.Droid.Resource.Styleable.ActionBar = global::ContextMenuSample.Droid.Resource.Styleable.ActionBar;
 			global::ContextMenu.Droid.Resource.Styleable.ActionBar_background = global::ContextMenuSample.Droid.Resource.Styleable.ActionBar_background;
 			global::ContextMenu.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::ContextMenuSample.Droid.Resource.Styleable.ActionBar_backgroundSplit;

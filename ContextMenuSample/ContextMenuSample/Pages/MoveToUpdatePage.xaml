@@ -66,6 +66,7 @@
                         <context:SwipeActionContextMenuView.ContextTemplate>
                             <DataTemplate>
                                 <Frame Margin="15, 5"
+                                       CornerRadius="10"
                                        IsClippedToBounds="true"
                                        BackgroundColor="{Binding IsMuted, Converter={StaticResource IsMutedToBackgroundColorConverter}}">
                                     <StackLayout 

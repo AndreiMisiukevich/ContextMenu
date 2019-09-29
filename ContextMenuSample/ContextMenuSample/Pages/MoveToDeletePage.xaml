@@ -62,6 +62,7 @@
                             <DataTemplate>
                                 <Frame Margin="15, 5"
                                        IsClippedToBounds="true"
+                                       CornerRadius="10"
                                        BackgroundColor="Red">
                                     <StackLayout 
                                              Padding="10, 0"
