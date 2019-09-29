@@ -27,7 +27,7 @@ namespace ContextMenuSample.ViewModels
         {
             new Item
             {
-                AvatarUrl = "https://pbs.twimg.com/profile_images/812310411647205376/gxleSqEg_400x400.jpg",
+                AvatarUrl = "https://pbs.twimg.com/profile_images/1174080109399224322/Yc0k4Bqe_400x400.jpg",
                 Name = "David Ortinau"
             },
             new Item
@@ -44,6 +44,16 @@ namespace ContextMenuSample.ViewModels
             {
                 AvatarUrl = "https://avatars2.githubusercontent.com/u/7827070?s=460&v=4",
                 Name = "Samantha Houts"
+            },
+            new Item
+            {
+                AvatarUrl = "https://pbs.twimg.com/profile_images/1108242358485712897/Y5Vsz1wW_400x400.jpg",
+                Name = "Thiago Bertuzzi"
+            },
+            new Item
+            {
+                AvatarUrl = "https://pbs.twimg.com/profile_images/1108242358485712897/Y5Vsz1wW_400x400.jpg",
+                Name = "Thiago Bertuzzi"
             }
         };
 
