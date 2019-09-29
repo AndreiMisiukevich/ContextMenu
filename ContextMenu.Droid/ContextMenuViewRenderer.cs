@@ -127,6 +127,7 @@ namespace ContextMenu.Droid
 
 			var attachedField = typeof(ScrollViewRenderer).GetField("_isAttached", BindingFlags.NonPublic | BindingFlags.Instance);
 			attachedField.SetValue(this, false);
+            (Element as BaseContextMenuView)?.ForceClose(false);
 		}
 
 		protected override void OnDetachedFromWindow()

@@ -12,7 +12,7 @@ namespace ContextMenuSample.ViewModels
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(item =>
         {
             var model = item as Item;
-            model?.ForceCloseCommand?.Execute(false); // OneWayToSource binding. So we call Close method without animation
+            //model?.ForceCloseCommand?.Execute(false); // OneWayToSource binding. So we call Close method without animation
             Items.Remove(model);
         }));
 

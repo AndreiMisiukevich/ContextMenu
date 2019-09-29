@@ -15,6 +15,7 @@ using ContextMenu;
 [assembly: ExportRenderer(typeof(ContextMenuScrollView), typeof(ContextMenuScrollViewRenderer))]
 namespace ContextMenu.Droid
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete]
 	[Preserve(AllMembers = true)]
 	public class ContextMenuScrollViewRenderer : ScrollViewRenderer
