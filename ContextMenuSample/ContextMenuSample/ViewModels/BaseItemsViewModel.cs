@@ -11,7 +11,9 @@ namespace ContextMenuSample.ViewModels
         private ICommand _deleteCommand;
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(item =>
         {
-            Items.Remove(item as Item);
+            var model = item as Item;
+            model?.ForceCloseCommand?.Execute(false); // OneWayToSource binding. So we call Close method without animation
+            Items.Remove(model);
         }));
 
         private ICommand _muteCommand;
@@ -62,6 +64,8 @@ namespace ContextMenuSample.ViewModels
             private string _avatarUrl;
             private string _name;
             private bool _isMuted;
+
+            public ICommand ForceCloseCommand { get; set; }
 
             public string AvatarUrl
             {

@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace ContextMenu
 {
@@ -24,6 +25,10 @@ namespace ContextMenu
         public static readonly BindableProperty AcceptWidthPercentageProperty = BindableProperty.Create(nameof(AcceptWidthPercentage), typeof(double), typeof(BaseContextMenuView), 0.33);
 
         public static readonly BindableProperty IsAutoCloseEnabledProperty = BindableProperty.Create(nameof(IsAutoCloseEnabled), typeof(bool), typeof(BaseContextMenuView), true);
+
+        public static readonly BindableProperty ForceCloseCommandProperty = BindableProperty.Create(nameof(ForceCloseCommand), typeof(ICommand), typeof(BaseContextMenuView), null, BindingMode.OneWayToSource);
+
+        public static readonly BindableProperty ForceOpenCommandProperty = BindableProperty.Create(nameof(ForceOpenCommand), typeof(ICommand), typeof(BaseContextMenuView), null, BindingMode.OneWayToSource);
 
         public event Action<BaseContextMenuView> ContextMenuOpened;
         public event Action<BaseContextMenuView> ContextMenuClosed;
@@ -50,6 +55,9 @@ namespace ContextMenu
             };
 
             Scrolled += OnScrolled;
+
+            ForceCloseCommand = new Command(parameter => ForceClose(parameter is bool boolean ? boolean : true));
+            ForceOpenCommand = new Command(parameter => ForceOpen(parameter is bool boolean ? boolean : true));
         }
 
         private bool IsContextChanged { get; set; }
@@ -76,6 +84,18 @@ namespace ContextMenu
         {
             get => (bool)GetValue(IsAutoCloseEnabledProperty);
             set => SetValue(IsAutoCloseEnabledProperty, value);
+        }
+
+        public ICommand ForceCloseCommand
+        {
+            get => (ICommand)GetValue(ForceCloseCommandProperty);
+            set => SetValue(ForceCloseCommandProperty, value);
+        }
+
+        public ICommand ForceOpenCommand
+        {
+            get => (ICommand)GetValue(ForceOpenCommandProperty);
+            set => SetValue(ForceOpenCommandProperty, value);
         }
 
         public void ForceClose(bool animated = true)

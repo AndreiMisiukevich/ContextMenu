@@ -28,7 +28,8 @@
                     BackgroundColor="White">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <context:SideContextMenuView IsAutoCloseEnabled="true">
+                <context:SideContextMenuView IsAutoCloseEnabled="true"
+                                             ForceCloseCommand="{Binding ForceCloseCommand}">
                         <context:SideContextMenuView.View>
                             <Frame BackgroundColor="#512DA8"
                                    Margin="15,5"
