@@ -1,10 +1,12 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace ContextMenu
 {
     [Obsolete]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class MoveToActionCell : BaseActionViewCell
     {
         private readonly AbsoluteLayout _mainView;

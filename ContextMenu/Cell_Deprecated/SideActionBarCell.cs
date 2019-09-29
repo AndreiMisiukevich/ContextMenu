@@ -1,9 +1,11 @@
 ﻿using Xamarin.Forms;
 using System;
+using System.ComponentModel;
 
 namespace ContextMenu
 {
     [Obsolete]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SideActionBarCell : BaseActionViewCell
     {
         public static SideActionBarCell LastOpenedCell { get; private set; }

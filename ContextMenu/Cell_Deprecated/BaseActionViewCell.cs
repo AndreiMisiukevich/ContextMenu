@@ -1,10 +1,12 @@
 ﻿using Xamarin.Forms;
 using System;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ContextMenu
 {
     [Obsolete]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BaseActionViewCell : ViewCell
     {
         public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(SideActionBarCell), null, propertyChanged: (bindable, oldValue, newValue) =>

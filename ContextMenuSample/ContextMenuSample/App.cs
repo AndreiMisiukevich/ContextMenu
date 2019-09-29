@@ -11,9 +11,6 @@ namespace ContextMenuSample
     {
         public App()
         {
-#if DEBUG
-            HotReloader.Current.Start(this);
-#endif
             MainPage = new NavigationPage(new ContentPage
             {
                 Content = new ScrollView
