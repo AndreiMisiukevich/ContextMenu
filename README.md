@@ -1,5 +1,3 @@
-# SideActionBarCell | MoveToActionCell controls for Xamarin Forms
-
 ## GIF
 <html>
   <table style="width:100%">
