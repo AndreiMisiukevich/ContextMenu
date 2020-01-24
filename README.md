@@ -104,7 +104,7 @@ You can adjust it by binding
 ```xml
 ...
 <CollectionView x:Name="Collection"
-        <ListView.ItemTemplate>
+        <CollectionView.ItemTemplate>
             <DataTemplate>
                 <context:SideContextMenuView>
                     <context:SideContextMenuView.View>
