@@ -8,12 +8,12 @@
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove=".DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cell_Deprecated\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
   </ItemGroup>
 </Project>
