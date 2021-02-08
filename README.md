@@ -113,7 +113,7 @@ You can adjust it by binding
 ```
 
 
-Check source code for more info, or 🇧🇾 ***just ask me =)*** 🇧🇾
+Check source code for more info, or ***just ask me =)***
 
 ## License
 The MIT License (MIT) see [License file](LICENSE)
