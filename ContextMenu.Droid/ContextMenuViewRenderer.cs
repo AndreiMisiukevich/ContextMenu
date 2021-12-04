@@ -78,7 +78,12 @@ namespace ContextMenu.Droid
 			return base.DispatchTouchEvent(e);
 		}
 
-		protected override void OnElementChanged(VisualElementChangedEventArgs e)
+        public override bool OnInterceptTouchEvent(MotionEvent ev)
+        {
+			return false;
+        }
+
+        protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
 			base.OnElementChanged(e);
 
