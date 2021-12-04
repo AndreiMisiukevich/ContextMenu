@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>ContextViewCell</id>
-    <version>2.0.1</version>
+    <version>2.0.3</version>
     <title>ContextViewCell</title>
     <authors>Andrei Misiukevich</authors>
     <owners>Andrei Misiukevich</owners>
@@ -14,7 +14,7 @@
     <tags>contextviewcell, viewcell, menucell, context menu, context menu viewcell, forms, contextbar, viewcell right menu, contextbar, context actions, contextactions, contextView</tags>
     <dependencies>
       <group>
-          <dependency id="Xamarin.Forms" version="2.4" />
+          <dependency id="Xamarin.Forms" version="5.0" />
       </group>
     </dependencies>
   </metadata>
