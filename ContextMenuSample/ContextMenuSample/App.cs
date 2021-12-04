@@ -32,6 +32,16 @@ namespace ContextMenuSample
                             {
                                 Text = "MOVE TO MUTE (AUTOCLOSING)",
                                 Command = new Command(() => MainPage.Navigation.PushAsync(new MoveToUpdatePage()))
+                            },
+                            new Button
+                            {
+                                Text = "ListView",
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new ListViewPage()))
+                            },
+                            new Button
+                            {
+                                Text = "ScrollView inside ListView",
+                                Command = new Command(() => MainPage.Navigation.PushAsync(new ScrollViewInsideListViewPage()))
                             }
                         }
                     }
