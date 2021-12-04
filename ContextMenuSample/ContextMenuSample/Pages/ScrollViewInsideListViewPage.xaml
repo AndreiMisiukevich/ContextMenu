@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ContextMenuSample.ViewModels"
+    xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
+    xmlns:conv="clr-namespace:ContextMenuSample.Converters"
+    x:Class="ContextMenuSample.Pages.ScrollViewInsideListViewPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:MenuFitWidthConverter x:Key="MenuFitWidthConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewmodels:ScrollViewInsideListViewViewModel/>
+    </ContentPage.BindingContext>
+    <ListView
+        x:Name="ListView"
+        RowHeight="110"
+        ItemsSource="{Binding Items}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <context:SideContextMenuView
+                        IsAutoCloseEnabled="true">
+                        <context:SideContextMenuView.View>
+                            <ScrollView
+                                WidthRequest="{Binding Source={x:Reference ListView}, Path=Width}"
+                                Margin="0, 10"
+                                BackgroundColor="Green">
+                                <StackLayout
+                                    BindableLayout.ItemsSource="{Binding .}">
+                                    <Label
+                                        Text="{Binding .}"/>
+                                </StackLayout>
+                            </ScrollView>
+                        </context:SideContextMenuView.View>
+                        <context:SideContextMenuView.ContextView>
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <BoxView
+                                    Color="Red"
+                                    WidthRequest="50"/>
+                                <BoxView
+                                    Color="Blue"
+                                    WidthRequest="50"/>
+                            </StackLayout>
+                        </context:SideContextMenuView.ContextView>
+                    </context:SideContextMenuView>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

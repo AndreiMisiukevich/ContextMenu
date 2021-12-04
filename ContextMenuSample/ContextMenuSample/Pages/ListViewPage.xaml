@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ContextMenuSample.ViewModels"
+    xmlns:templates="clr-namespace:ContextMenuSample.Templates"
+    x:Class="ContextMenuSample.Pages.ListViewPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:BaseItemsViewModel />
+    </ContentPage.BindingContext>
+    
+    <ListView
+        ItemsSource="{Binding Items}"
+        HasUnevenRows="True"
+        Margin="0, 5, 0, 0"
+        BackgroundColor="White">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <templates:UserItemView/>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

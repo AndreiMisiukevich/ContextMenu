@@ -17,5 +17,9 @@
     <Folder Include="Converters\" />
     <Folder Include="Pages\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Templates\" />
   </ItemGroup>
 </Project>
