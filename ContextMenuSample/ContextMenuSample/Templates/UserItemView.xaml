@@ -63,10 +63,10 @@
                                 Spacing="10"
                                 Margin="0, 5">
                         <ImageButton Source="trash.png" HeightRequest="60" WidthRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
-                                        Command="{Binding BindingContext.DeleteCommand, Source={x:Reference CollectionView}}"
+                                        Command="{Binding Parent.BindingContext.DeleteCommand, Source={x:Reference ThisTemplate}}"
                                         CommandParameter="{Binding .}"/>
                         <ImageButton Source="mute.png" HeightRequest="60" WidthRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
-                                        Command="{Binding BindingContext.MuteCommand, Source={x:Reference CollectionView}}"
+                                        Command="{Binding Parent.BindingContext.MuteCommand, Source={x:Reference ThisTemplate}}"
                                         CommandParameter="{Binding .}"/>
                     </StackLayout>
                 </Frame>
